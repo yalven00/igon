@@ -1,0 +1,5 @@
+<div class="login_form">
+<%= form_tag(:action => 'attempt_login') do %>
+<p><input type="password" name="password" id="password" /></p>
+<%= submit_tag("Log in", :id => 'submit_password') %>
+<% end %>

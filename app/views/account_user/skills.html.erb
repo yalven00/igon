@@ -1,0 +1,59 @@
+<% @page_title = "personal" %>
+
+<!--<div class="clearfix">
+  <div class="header_icon first"><%= image_tag('account_setup_personal.jpg') %><br />personal</div>
+  <div class="header_icon"><%= image_tag('account_setup_needs.jpg') %><br />needs</div>
+  <div class="header_icon selected"><%= image_tag('account_setup_skills.jpg') %><br />skills</div>
+  <div class="header_icon"><%= image_tag('account_setup_connections.jpg') %><br />connections</div>
+</div>-->
+            <%= form_for(@account_user, :url => {:action => 'skills_update'}, :html => {:id => 'contact_form'}) do |f| %>
+
+        <section id="main_holder" class="blue_top">
+
+                  <section class="clearfix blue_wraparound">
+            <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+            <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+                      <div class="text_container">
+                          <h3 class="head_main">Profile Setup</h3>
+              <section class="head_info">
+                <p><span id="step">Step <strong>3</strong> of <strong>4</strong></span><br />
+                  <span class="green">50%</span> Complete
+                </p>
+              </section>
+              <h4 id="subhead_account_setup">Skills/Offers</h4>
+                      </div>
+                  </section>
+
+          <div class="clearfix">
+            <div id="needs_checks">
+              <h4>Goods<span class="note"> (Choose all that apply)</span></h4>
+              <ul class="choosers chosen">
+              </ul>
+              <ul class="choosers original">
+
+                <% Skill.where(:good => 1).each do |skill| %>
+                  <li><%= check_box_tag "account_user[skill_ids][]", skill.id, @account_user.skill_ids.include?(skill.id), {:class => 'checkbox', :id => dom_id(skill)} %><%= image_tag('setup_add.png', :class => 'main', :size => "12x12") %><%= skill.name %></li>
+                <% end %>
+
+              </ul>
+              <h4 id="personal_interests">Services<span class="note"> (Choose all that apply)</span></h4>
+              <ul class="choosers chosen">
+              </ul>
+              <ul class="choosers original">
+
+                <% Skill.where(:good => 0).each do |skill| %>
+                  <li><%= check_box_tag "account_user[skill_ids][]", skill.id, @account_user.skill_ids.include?(skill.id), {:class => 'checkbox', :id => dom_id(skill)} %><%= image_tag('setup_add.png', :class => 'main', :size => "12x12") %><%= skill.name %></li>
+                <% end %>
+
+              </ul>
+            </div>
+          </div>
+
+              </section><!--END #main_holder-->
+
+        <!--<%= submit_tag("submit", :id => '') %>-->
+        <section id="submit_section">
+          <%= image_submit_tag("setup_submit.jpg", :id => '', :class => "submit") %>
+          <p class="hoverline">step 4: <a href="">connections</a><br /><span class="or_skip"><em>or <a href="">Skip</a></em></span></p>
+        </section>
+            <% end %>

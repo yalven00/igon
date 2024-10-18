@@ -1,0 +1,77 @@
+<div style="display:none;" id="offers_<%= offer.id %>">
+  <div style="height:480px;width: 500px;padding-left:42px;">
+    <div class="mouseover-offers-close" title="Close" style="display:block;">
+      <%= link_to '', "#", :onclick=>"closeMouseover();return false;" %>
+    </div>
+    <section id="mouseover" class="left-side"style"top:0px">
+      <section class="container">
+        <section class="top-content">
+          <section class="left-content">
+            <section class="display-photo">
+              <figure class="main canvas">
+                <a href="#"><span class="sprites small-balloon">2</span>
+                  <% if !offer.images.blank? && image_presence(offer.images.first.image_url) %>
+                    <%= image_tag(offer.images.first.image_url, :size => '73x69', :alt => 'offer.name') %>
+                  <% else %>
+                    <%= image_tag('thumbs/steve.jpg') %>
+                  <% end %>
+                </a>
+              </figure>
+            </section>
+            <h2><a class="sprites ask" href="#"></a><a href="#"><%= offer.name %></a></h2>
+            <p><%= offer.location %></p>
+            <small class="expire">Expires in 2 days</small>
+          </section>
+          <section class="right-content">
+            <p>30</p>
+            <small>bonos</small>
+          </section>
+        </section>
+        <section class="middle-content">
+          <p><%= offer.description %></p>
+          <p class="count-data">
+            <span class="lalign">shipping costs? Yes</span>
+            Other Costs? No
+            <span class="ralign">Globes: <i class="sprites globe">10</i></span>
+          </p>
+        </section>
+        <section class="bottom-content">
+          <section class="left-content bottom-profile">
+            <figure class="main canvas">
+              <a href="#">
+                <% if !offer.images.blank? && image_presence(offer.images.first.image_url) %>
+                    <%= image_tag(offer.account_user.images.first.image_url, :size => '70x69') %>
+                <% else %>
+                    <%= image_tag('thumbs/ph7.jpg') %>
+                <% end %>
+              </a>
+            </figure>
+            <h3>
+              <a href="#">
+                <% if offer.account_user.fullname.length > 12 %>
+                  <%= offer.account_user.first_name %>
+                <% else %>
+                  <%= offer.account_user.fullname %>
+                <% end %>
+              </a>
+            </h3>
+            <p>brooklyn, NY</p>
+            <section class="badge">
+              <figure class="maestro canvas">
+                <img alt="" src="/assets/bdg-maestro.png">
+              </figure>
+              <p>90%</p>
+            </section>
+          </section>
+          <section class="right-content">
+            <ul>
+              <li><a class="sprites igobtn" href="#">&nbsp;</a></li>
+              <li><a class="sprites arrowbtn" href="#">more</a></li>
+            </ul>
+            <a class="red-long-btn" href="#">+ wishlist</a>
+          </section>
+        </section>
+      </section>
+    </section>
+  </div>
+</div>

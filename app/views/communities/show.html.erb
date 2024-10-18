@@ -1,0 +1,356 @@
+<%= stylesheet_link_tag 'page-style' %>
+<%= csrf_meta_tags %>
+<div id='discussion_modal' style='padding:10px; background:#fff;'>
+  <ul id="modal-body">
+    <li>
+      <%= render 'info_and_membership' %>
+    </li>
+    <li>
+      <ul class="second">
+        <%= render 'offers_policy_admins' %>
+      </ul>
+    </li>
+    <li>
+      <section class="last">
+          <section class="left-content">
+            <section class="top-content">
+              <h3>Public Announcements and Events</h3>
+              <ul class="events">
+                <li class="ann"><i class="sprites"></i><p>Today we hit 1,000 members for the 1st time ever!</p></li>
+                <li class="eve"><i class="sprites"></i><p>1,000 members party at the Outback in LI,<br/><span>Event Date: June 4</span></p></li>
+                <li class="ann"><i class="sprites"></i><p>Rangers win the Stanley Cup! I can't believe it</p></li>
+              </ul>
+            </section>
+            <section class="bottom-content">
+              <%= render 'chart' %>
+            </section>
+          </section>
+          <section class="right-content">
+            <h3>Community Showcase</h3>
+            <%= render 'showcase' %>
+            <%= render 'connections' %>
+          </section>
+      </section>
+    </li>
+  </ul>
+</div>
+
+<script>
+  //Dialog for discussion
+  function get_ajax_dialog(){
+    var $dialog = $("#show-discussion");
+    if ( !$dialog.size() )
+      $dialog = $('<div id="show-discussion" style="display:none;"></div>').appendTo('body');
+    return $dialog;}
+    $(function() {
+    $('a.show-discussion').live('click', function() {
+      var $dialog = get_ajax_dialog();
+      var url = $(this).attr('href');
+      var title = $(this).attr('title');
+      //load remote content
+      $dialog.load(
+        url,
+        // {},
+        function(responseText, textStatus, XMLHttpRequest) {
+          if (textStatus == 'error')
+            $dialog.html(responseText);
+            $dialog.dialog({
+            modal: true,
+            width: 830,
+            draggable : false,
+            resizable: false,
+            zIndex: 1001,
+            show: {effect: 'fade'},
+            hide: {effect: 'fade'},
+            open: function(event, ui) {
+              $(event.target).parent().css('top', '90px');
+            },
+            //Destroy on close. Required for some stacked modal functionality
+            close: function(ev, ui) {
+              $(this).remove();
+            }
+          });
+        }
+      );
+      return false;
+    });
+  });
+
+  //Dialog for media
+  // function get_ajax_dialog(){
+  //   var $dialog = $("#show-media");
+  //   if ( !$dialog.size() )
+  //     $dialog = $('<div id="show-media" style="display:none;"></div>').appendTo('body');
+  //   return $dialog;
+  //   }
+  //   $(function() {
+  //   $('a.show-media').live('click', function() {
+  //     var $dialog = get_ajax_dialog();
+  //     var url = $(this).attr('href');
+  //     var title = $(this).attr('title');
+  //     //load remote content
+  //     $dialog.load(
+  //       url,
+  //       // {},
+  //       function(responseText, textStatus, XMLHttpRequest) {
+  //         if (textStatus == 'error')
+  //           $dialog.html(responseText);
+  //           $dialog.dialog({
+  //           modal: true,
+  //           height: 'auto',
+  //           width: 746,
+  //           draggable : false,
+  //           resizable: false,
+  //           zIndex: 1005,
+  //           show: {effect: 'fade'},
+  //           hide: {effect: 'fade'},
+  //           position: ['center',50],
+  //             open: function(event, ui) {
+  //               $(event.target).parent().css('top', '66px');
+  //             },
+  //             //Destroy on close. Required for some stacked modal functionality
+  //             close: function(ev, ui) {
+  //               $(this).remove();
+  //             }
+  //          });
+  //        }
+  //       );
+  //     return false;
+  //   });
+  // });
+
+        // $(document).ready(function () {
+        //     $('a.show-media').live('click', function (e) {
+        //         e.preventDefault();
+        //         var page = $(this).attr("href")
+        //         var pagetitle = $(this).attr("title")
+        //         var $dialog = $('<div></div>')
+        //         .html('<iframe style="border: 0px; " src="' + page + '" width="100%" height="100%"></iframe>')
+        //         .dialog({
+        //     modal: true,
+        //     height: 'auto',
+        //     width: 752,
+        //     draggable : false,
+        //     resizable: false,
+        //     zIndex: 1005,
+        //     show: {effect: 'fade'},
+        //     hide: {effect: 'fade'},
+        //     position: ['center',50],
+        //       open: function(event, ui) {
+        //         $(event.target).parent().css('top', '66px');
+        //         $(event.target).parent().css('height', '496px');
+        //       },
+        //       //Destroy on close. Required for some stacked modal functionality
+        //       close: function(ev, ui) {
+        //         $(this).remove();
+        //       }
+        //         });
+        //         $dialog.dialog('open');
+        //     });
+        // });
+
+
+    $(function() {
+        $('a.show-media').click(function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            var horizontalPadding = 0;
+            var verticalPadding = 0;
+            $('<iframe id="externalSite" class="externalSite" src="' + this.href + '" />').dialog({
+                title: ($this.attr('title')) ? $this.attr('title') : 'External Site',
+                autoOpen: true,
+                width: 748,
+                height: 496,
+                modal: true,
+                zIndex: 1005,
+                resizable: false,
+                // autoResize: true,
+                overlay: {
+                    opacity: 0.5,
+                    background: "black"
+                },
+                open: function(event, ui) {
+                  $(event.target).parent().css('top', '86px');
+                },
+            }).width(748 - horizontalPadding).height(496- verticalPadding);
+        });
+    });
+
+
+  //Popup loader
+  $(document).ajaxStart(function() {
+    $.blockUI({
+      css: {
+      border: 'none',
+      padding: '15px',
+      backgroundColor: '#000',
+      '-webkit-border-radius': '10px',
+      '-moz-border-radius': '10px',
+      opacity: .5,
+      color: '#fff'
+      }
+    });
+  }).ajaxStop($.unblockUI);
+
+
+
+  //Dialog for connections
+  function get_ajax_dialog(){
+    var $dialog = $("#connections-dialog");
+    if ( !$dialog.size() )
+      $dialog = $('<div id="connections-dialog" style="display:none;"></div>').appendTo('body');
+    return $dialog;
+    }
+
+  // $(function() {
+  //   $('a#see-all-connections').live('click', function() {
+  //     var $dialog = get_ajax_dialog();
+  //     var url = $(this).attr('href');
+  //     var title = $(this).attr('title');
+
+  //     //load remote content
+  //     $dialog.load(
+  //       url,
+  //       // {},
+  //       function(responseText, textStatus, XMLHttpRequest) {
+  //         if (textStatus == 'error')
+  //           $dialog.html(responseText);
+  //           $dialog.dialog({
+  //             modal: true,
+  //             width: 750,
+  //             draggable : false,
+  //             resizable: false,
+  //             zIndex: 1006,
+  //             show: {effect: 'fade'},
+  //             hide: {effect: 'fade'},
+  //             close: function(ev, ui) {
+  //               $(this).remove();
+  //             }
+  //         });
+  //       }
+  //     );
+  //     return false;
+  //   });
+  // });
+
+      $(function() {
+        $('a#see-all-connections').click(function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            var horizontalPadding = 10;
+            var verticalPadding = 0;
+            $('<iframe id="externalSite" class="externalSite" src="' + this.href + '" />').dialog({
+                title: ($this.attr('title')) ? $this.attr('title') : 'External Site',
+                autoOpen: true,
+                width: 758,
+                height: 440,
+                modal: true,
+                zIndex: 1005,
+                resizable: false,
+                // autoResize: true,
+                overlay: {
+                    opacity: 0.5,
+                    background: "black"
+                },
+                open: function(event, ui) {
+                  $(event.target).parent().css('top', '460px');
+                },
+            }).width(758 - horizontalPadding).height(440- verticalPadding);
+        });
+    });
+
+  // //Dialog for showcase
+  // function get_ajax_dialog(){
+  //   var $dialog = $("#showcase-dialog");
+  //   if ( !$dialog.size() )
+  //     $dialog = $('<div id="showcase-dialog" style="display:none;"></div>').appendTo('body');
+  //   return $dialog;
+  // }
+  // $(function() {
+  //   $('a#see-all-showcase').live('click', function() {
+  //     var $dialog = get_ajax_dialog();
+  //     var url = $(this).attr('href');
+  //     var title = $(this).attr('title');
+
+  //     //load remote content
+  //     $dialog.load(
+  //       url,
+  //       // {},
+  //       function(responseText, textStatus, XMLHttpRequest) {
+  //         if (textStatus == 'error')
+  //           $dialog.html(responseText);
+  //           $dialog.dialog({
+  //             modal: true,
+  //             width: 769,
+  //             draggable : false,
+  //             resizable: false,
+  //             zIndex: 1006,
+  //             show: {effect: 'fade', duration: 2000},
+  //             hide: {effect: 'fade', duration: 500},
+  //             open: function(event, ui) {
+  //               $(event.target).parent().css('top', '330px');
+  //             },
+  //             close: function(ev, ui) {
+  //               $(this).remove();
+  //             }
+  //           });
+  //         }
+  //       );
+  //     return false;
+  //   });
+  // });
+
+    $(function() {
+        $('a#see-all-showcase').click(function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            var horizontalPadding = 10;
+            var verticalPadding = 0;
+            $('<iframe id="externalSite" class="externalSite" src="' + this.href + '" />').dialog({
+                title: ($this.attr('title')) ? $this.attr('title') : 'External Site',
+                autoOpen: true,
+                width: 758,
+                height: 254,
+                modal: true,
+                zIndex: 1005,
+                resizable: false,
+                // autoResize: true,
+                overlay: {
+                    opacity: 0.5,
+                    background: "black"
+                },
+                open: function(event, ui) {
+                  $(event.target).parent().css('top', '460px');
+                },
+            }).width(758 - horizontalPadding).height(254- verticalPadding);
+        });
+    });
+
+</script>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#menu-showcase a").click(function() {
+      var link = $(this).attr('href');
+      var showIt = $("#slider");
+      var hideIt = $("#slider");
+
+      $("#menu-showcase a").removeClass('cur')
+      $(this).addClass('cur');
+
+      hideIt.fadeOut(1000, function(){
+        hideIt.removeClass("current");
+        showIt.addClass("current");
+        showIt.fadeIn(3000);
+      });
+      return false;
+    });
+  });
+</script>
+
+<style type="text/css">
+  .sc-items {display:none;}
+  .sc-items.current {display:block;}
+</style>
+

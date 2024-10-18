@@ -1,0 +1,41 @@
+<div id="main_head"><h1>My Account</h1><%= link_to('Save and Go Home', { :action => "home" }) %></div>
+
+<%= render(:partial => "nav") %>
+
+<section id="main_holder" class="blue_top">
+
+    <section class="clearfix blue_wraparound">
+    <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+    <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+        <div class="text_container">
+            <h3 class="head_main">Personal</h3>
+        </div>
+    </section>
+
+  <%= form_for(@account_user, :url => {:action => 'update'}, :validate => true, :html => {:id => 'contact_form'}) do |f| %>
+    <div class="top_container clearfix">
+      <h3><%= image_tag('one.png') %>Personal Details</h3>
+        <div class="indent first_col">
+          <p><%= f.text_field(:first_name, :id => 'first_name', :class => 'longer', :placeholder => 'First Name') %></p>
+          <p class="position_container field_height_min"><%= f.select(:employment_status, options_for_select([["Employed", "Employed"], ["Unemployed", "Unemployed"], ["Underemployed", "Underemployed"], ["Student", "Student"], ["Disabled", "Disabled"]], @account_user.employment_status), {:include_blank => true}, {:class => "select", :title => "Employment Status" }) %></p>
+        </div>
+        <div class="second_col">
+          <p><%= f.text_field(:last_name, :id => 'last_name', :class => 'longer', :placeholder => 'Last Name') %></p>
+          <p class="text_before_input">Gender<%= f.radio_button(:gender, 'm', :id => 'gender_male', :class => 'radio_button') %><%= image_tag('gender_male.gif', :class => '') %><%= f.radio_button(:gender, 'f', :id => 'gender_female', :class => 'radio_button') %><%= image_tag('gender_female.gif', :class => '') %></p>
+        </div>
+        <div class="indent">
+          <p class="text_before_input position_container clear"><span id="date_wrap"><span class="text_wrap">Birthdate</span> <%= f.date_select(:date_of_birth, {:order => [:month, :day, :year], :use_month_numbers => true, :include_blank => true, :start_year => Time.now.year - 72, :end_year => Time.now.year - 18}, {:class => "select"}) %></span></p>
+        </div>
+      </div>
+      <h3><%= image_tag('two.png') %>Address</h3>
+      <div class="indent">
+        <%= f.fields_for :address do |t| %>
+          <p><%= t.text_field(:country, :id => 'primary_email', :placeholder => 'Country') %> <img src="/assets/flags/United-States.png" id="flag"></p>
+          <p><%= t.text_field(:line_1, :class => 'longer', :placeholder => 'Address Line 1') %><%= t.text_field(:line_2, :class => 'longer', :placeholder => 'Address Line 2') %></p>
+          <p><%= t.text_field(:city, :id => 'city', :placeholder => 'City') %><%= t.text_field(:state, :id => 'state', :placeholder => 'State') %><%= t.text_field(:zip, :id => 'zip', :placeholder => 'Zip') %></p>
+        <% end %>
+      </div>
+      <%= submit_tag("submit", :id => 'submit_my_account') %>
+    <% end %>
+
+</section>

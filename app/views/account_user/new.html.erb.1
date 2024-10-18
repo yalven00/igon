@@ -1,0 +1,113 @@
+<% @page_title = "personal" %>
+
+<!--<div class="clearfix">
+  <div class="header_icon first selected"><%= image_tag('account_setup_personal.jpg') %><br />personal</div>
+  <div class="header_icon"><%= image_tag('account_setup_needs.jpg') %><br />needs</div>
+  <div class="header_icon"><%= image_tag('account_setup_skills.jpg') %><br />skills</div>
+  <div class="header_icon"><%= image_tag('account_setup_connections.jpg') %><br />connections</div>
+</div>-->
+            <%= form_for(@account_user, :url => {:action => 'create'}, :validate => true, :html => {:id => 'contact_form'}) do |f| %>
+
+        <section id="main_holder" class="blue_top">
+
+                  <section class="clearfix blue_wraparound">
+            <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+            <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+                      <div class="text_container">
+                          <h3 class="head_main">Profile Setup</h3>
+
+              <section class="head_info">
+                <p><span id="step">Step <strong>1</strong> of <strong>4</strong></span><br />
+                  <span class="green">0%</span> Complete
+                </p>
+              </section>
+              <h4 id="subhead_account_setup">Personal</h4>
+                          <p class="clear"></span></p>
+                      </div>
+                  </section>
+
+          <div class="clearfix">
+            <div id="personal_fields_one">
+              <p><%= f.text_field(:first_name, :id => 'first_name', :placeholder => 'First Name', :tabIndex => '1') %></p>
+                        <p><%= f.text_field(:email, :id => 'email', :placeholder => 'Email', :tabIndex => '3') %></p>
+              <p><%= f.password_field(:password, :id => 'password', :placeholder => 'Password', :tabIndex => '5') %></p>
+              <p class="text_before_input gender_container">Gender<%= f.radio_button(:gender, 'm', :id => 'gender_male', :class => 'radio_button', :tabIndex => '7') %><%= image_tag('gender_male.gif', :class => '') %><%= f.radio_button(:gender, 'f', :id => 'gender_female', :class => 'radio_button', :tabIndex => '8') %><%= image_tag('gender_female.gif', :class => '') %></p>
+                <!--<select name="city_id" id="city_id" class="select"title="Employment Status">
+                    <option></option>
+                  <option value="employed">Employed</option>
+                  <option value="unemployed">Unemployed</option>
+                </select>-->
+              <p class="text_before_input position_container field_height_min"><span id="date_wrap"><span class="text_wrap">Birthdate</span> <%= f.date_select(:date_of_birth, {:order => [:month, :day, :year], :use_month_numbers => true, :include_blank => true, :start_year => Time.now.year - 72, :end_year => Time.now.year - 18}, {:class => "select", :tabIndex => '10'}) %></span></p>
+
+              <%= f.fields_for :address do |t| %>
+                <p><%= t.text_field(:line_1, :id => 'line_1', :placeholder => 'Address Line 1', :tabIndex => '12') %></p>
+                <p><%= t.text_field(:zip, :id => 'setup_zip_full', :placeholder => 'Zip', :tabIndex => '14') %></p>
+              <% end %>
+
+            </div>
+
+            <div id="personal_fields_two">
+              <p><%= f.text_field(:last_name, :id => 'last_name', :placeholder => 'Last Name', :tabIndex => '2') %></p>
+              <p><%= f.text_field(:email_confirmation, :id => 'email_confirmation', :placeholder => 'Confirm Email', :tabIndex => '4') %></p>
+              <p><%= f.password_field(:password_confirmation, :id => 'password_confirmation', :placeholder => 'Confirm Password', :tabIndex => '6') %></p>
+              <p class='position_container field_height_min'>
+                <%= f.select(:employment_status, options_for_select([["Employed", "Employed"], ["Unemployed", "Unemployed"], ["Underemployed", "Underemployed"], ["Student", "Student"], ["Disabled", "Disabled"]], @account_user.employment_status), {:include_blank => true}, {:class => "select", :title => "Employment Status" , :tabIndex => '9'}) %></p>
+              <%= f.fields_for :address do |t| %>
+                <p><%= t.text_field(:country, :id => 'country', :placeholder => 'Country', :tabIndex => '11') %></p>
+                <p><%= t.text_field(:line_2, :id => 'line_2', :placeholder => 'Address Line 2', :tabIndex => '13') %></p>
+              <% end %>
+            </div>
+
+            <div id="personal_checks">
+              <h4>Languages Spoken<span class="note"> (Choose all that apply)</span></h4>
+              <ul class="choosers chosen">
+              </ul>
+              <ul class="choosers original">
+
+                <% Language.all.each do |language| %>
+                  <li><%= check_box_tag "account_user[language_ids][]", language.id, @account_user.language_ids.include?(language.id), {:class => 'checkbox', :id => dom_id(language)} %><%= image_tag('setup_add.png', :class => 'main', :size => "12x12") %><%= language.name %></li>
+                <% end %>
+
+              </ul>
+              <!--<ul class="hidden_choosers">
+                <% Language.where(:hidden => 1).each do |language| %>
+                  <li><%= check_box_tag "account_user[language_ids][]", language.id, @account_user.language_ids.include?(language.id), {:class => 'checkbox', :id => dom_id(language)} %><%= image_tag('setup_add.png', :class => 'main', :size => "12x12") %><%= language.name %></li>
+                <% end %>
+
+              </ul>
+              <p class="view_more_holder hoverline"><a href="#" class="more"><%= image_tag('setup_more.png', :size => "11x11") %><span class="text">View More</span></a></p>-->
+              <h4 id="personal_interests">Interests<span class="note"> (Choose all that apply)</span></h4>
+              <ul class="choosers chosen">
+              </ul>
+              <ul class="choosers original">
+
+                <% Interest.all.each do |interest| %>
+                  <li><%= check_box_tag "account_user[interest_ids][]", interest.id, @account_user.interest_ids.include?(interest.id), {:class => 'checkbox', :id => dom_id(interest)} %><%= image_tag('setup_add.png', :class => 'main', :size => "12x12") %><%= interest.name %></li>
+                <% end %>
+
+              </ul>
+
+              <p class="text_before_input humanizer_container">
+           
+              <%= f.text_field :humanizer_answer %>
+              <%= f.hidden_field :humanizer_question_id %></p>
+
+              <p class="text_before_input" id="terms_click_container"><%= link_to(sanitize('Click here'), root_path + "terms", :id => 'terms_link')  %> to read and agree to the Terms &amp; Conditions.</p>
+
+            </div>
+          </div>
+
+              </section><!--END #main_holder-->
+
+        <section id="submit_section">
+          <%= image_submit_tag("setup_submit.jpg", :id => '', :class => "submit") %>
+          <p class="hoverline">step 2: <a href="">needs</a></p>
+        </section>
+
+        <section id="terms_text">
+          <%= render(:partial => "shared/terms") %>
+          <p class="text_before_input" id="terms_accept_container"><%= f.check_box(:terms, :validate => false, :id => 'terms_check', :class => 'checkbox', :disabled => 'disabled') %> <span id="agree_text">I agree to the Terms &amp; Conditions.</span></p>
+          <a href="#" class="scroll_end">Scroll to end</a>
+        </section>
+
+            <% end %>

@@ -1,0 +1,114 @@
+require 'digest/sha2'
+class AccountUser < ActiveRecord::Base
+  has_many :products
+  has_many :comments
+
+  has_many :community_memberships
+  has_many :communities, :through => :community_memberships
+
+  attr_accessor :image, :file, :video
+  has_many :images, as: :imageable, :dependent => :destroy
+  accepts_nested_attributes_for :images
+
+  has_many :videos, as: :videoable, :dependent => :destroy
+  accepts_nested_attributes_for :videos
+
+  has_one :address
+  has_one :account_contact
+  has_one :preference_list
+  has_one :profile
+  has_and_belongs_to_many :languages
+  has_and_belongs_to_many :interests
+  has_and_belongs_to_many :needs
+  has_and_belongs_to_many :skills
+  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :account_contact
+  accepts_nested_attributes_for :preference_list
+  accepts_nested_attributes_for :profile
+  accepts_nested_attributes_for :interests
+  accepts_nested_attributes_for :languages
+  accepts_nested_attributes_for :needs
+  accepts_nested_attributes_for :skills
+
+  include Humanizer
+  # Now when bypass_humanizer is true, validation will be skipped.
+  attr_accessor :bypass_humanizer
+  require_human_on :create, :unless => :bypass_humanizer
+
+  attr_accessor :password
+  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+
+  validates_presence_of :first_name
+  validates_presence_of :first_name, :maximum => 100
+  validates_presence_of :last_name
+  validates_presence_of :last_name, :maximum => 200
+  validates_presence_of :email
+  validates_presence_of :email, :maximum => 255
+  validates_format_of :email, :with => EMAIL_REGEX
+  validates_uniqueness_of :email
+  validates_confirmation_of :email
+  validates_date :date_of_birth, :before => lambda { 18.years.ago }, :before_message => "must be at least 18 years old"
+  validates_acceptance_of :terms
+  validates_length_of :password, :within => 6..40, :on => :create
+  validates_confirmation_of :password
+  validates_exclusion_of :password, :in => %w( Password ), :message => "is invalid"
+  before_save :create_hashed_password
+  after_save :clear_password
+
+  attr_protected :hashed_password, :salt
+  attr_accessible :address_attributes, :languages_attributes, :interests_attributes, :needs_attributes, :password, :gender, :email_confirmation, :password_confirmation, :terms, :skills_attributes, :first_name, :last_name, :email, :date_of_birth, :employment_status, :place_of_birth
+
+  def self.authenticate(email="",password="")
+    user = AccountUser.find_by_email(email)
+    if user && user.password_match?(password)
+      return user
+    else
+      return false
+    end
+  end
+
+  def password_match?(password="")
+    hashed_password == AccountUser.hash_with_salt(password, salt)
+  end
+
+  def self.make_salt(email="")
+    Digest::SHA2.hexdigest("Use #{email} with #{Time.now} to make salt")
+  end
+
+  def self.hash_with_salt(password="", salt="")
+    Digest::SHA2.hexdigest("Pour some #{salt} on me: #{password}")
+  end
+
+  def membership(community_id)
+    member = self.community_memberships.where(:community_id => community_id)
+    return (member.blank? ? false : true)
+  end
+
+  def self.search(search)
+    if search
+      where('first_name LIKE ? OR last_name LIKE ?', "%#{search.downcase}%", "%#{search.downcase}%")
+    else
+      scoped
+    end
+  end
+
+  def self.with_images
+    includes(:images)
+  end
+
+  def fullname
+    "#{first_name} #{last_name}"
+  end
+
+  private
+  def create_hashed_password
+    unless password.blank?
+      self.salt = AccountUser.make_salt(email) if salt.blank?
+      self.hashed_password = AccountUser.hash_with_salt(password, salt)
+    end
+  end
+
+  def clear_password
+    self.password = nil
+  end
+end

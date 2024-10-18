@@ -1,0 +1,64 @@
+<div style="display:none;" id="admins_<%= admin.id %>">
+  <div style="height:480px;width: 500px;">
+    <div class="mouseover-offers-close" title="Close" style="display:block;left: 456px;">
+      <%= link_to '', "#", :onclick=>"closeMouseover();return false;" %>
+    </div>
+    <section id="mouseover" class="right-side">
+      <section class="container">
+        <section class="top-content">
+          <section class="left-content">
+            <section class="display-photo">
+              <figure class="main canvas">
+                <a href="#"><span class="sprites small-balloon">2</span>
+                  <% if !admin.images.blank? && image_presence(admin.images.first.image_url) %>
+                    <%= image_tag(admin.images.first.image_url, :size => '73x69', :alt => '@admin.fullname') %>
+                  <% else %>
+                    <%= image_tag('thumbs/ph7.jpg') %>
+                <% end %>
+                </a>
+              </figure>
+            </section>
+            <h2>
+              <a href="#">
+                <% if admin.fullname.length > 12 %>
+                  <%= admin.first_name %>
+                <% else %>
+                  <%= admin.fullname %>
+                <% end %>
+              </a>
+            </h2>
+            <p>brooklyn, NY</p>
+            <small>5 moths member</small>
+          </section>
+          <section class="right-content">
+            <p>1K</p>
+            <small>spending power</small>
+          </section>
+        </section>
+        <section class="middle-content">
+          <p>This Mac air book looks like new.  It has very few scratches, is fast, comes with all the software and all batteries, power cords you can imagine.  I receintly switched to windows so I do not have a need for it now, but....</p>
+          <p class="count-data">
+            <span class="lalign"><strong>500</strong> globes</span>
+            <strong>5</strong> total offers
+            <span class="ralign"><strong>10</strong> communities</span>
+          </p>
+        </section>
+        <section class="bottom-content">
+          <section class="left-content badge">
+            <figure class="maestro canvas">
+              <img src="/assets//bdg-maestro.png" alt=""/>
+            </figure>
+            <p>90%</p>
+          </section>
+          <section class="right-content">
+            <ul>
+              <li><a class="sprites igobtn" href="#">&nbsp;</a></li>
+              <li><a class="sprites arrowbtn" href="#">more</a></li>
+            </ul>
+            <a class="red-long-btn" href="#">+ wishlist</a>
+            </section>
+          </section>
+      </section>
+    </section>
+  </div>
+</div>

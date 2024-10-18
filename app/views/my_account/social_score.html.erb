@@ -1,0 +1,95 @@
+<div id="main_head"><h1>My Account</h1><%= link_to('Save and Go Home', { :action => "home" }) %></div>
+
+<%= render(:partial => "nav") %>
+
+<section id="main_holder" class="blue_top">
+
+    <section class="clearfix blue_wraparound">
+    <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+    <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+        <div class="text_container">
+            <h3 class="head_main">Social Score</h3>
+        </div>
+    </section>
+
+  <%= form_for(@account_user, :url => {:action => 'social_score'}, :html => {:id => 'contact_form'}) do |f| %>
+    <div class="clearfix">
+      <h3><%= image_tag('one.png') %>Summary</span></h3>
+          <div class="indent top_container clearfix">
+            <div><img src="/assets/maestro.png" /><br />social score</div>
+            <div class="second"><span class="bigger" style="color: #FC8F00;">90%</span><br />trading score</div>
+          </div>
+      <h3><%= image_tag('two.png') %>Ratings <span class="note">(based on a 1-5 scale)</span></h3>
+      <div class="indent">
+
+        <div class="score_box">
+          <div class="score_box_head clearfix">
+            <h3>Buyer - 51%</h3>
+            <h4>Goods</h4><h4>Services</h4>
+          </div>
+
+          <div class="score_box_body clearfix">
+            <div class="first">
+              <p>Is item listed as described?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Is photo of the item shown clearly?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Are all specifics accurate?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Are all details listed accurately?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+            </div>
+            <div class="second">
+              <p>Is the shipping service reliable?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>What are the shipping charges?<br /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Is the customer informed?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>How soon will the item be shipped?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="score_box">
+          <div class="score_box_head clearfix">
+            <h3>Seller - 71%</h3>
+            <h4>Goods</h4><h4>Services</h4>
+          </div>
+
+          <div class="score_box_body clearfix">
+            <div class="first">
+              <p>Is item listed as described?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Is photo of the item shown clearly?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Are all specifics accurate?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Are all details listed accurately?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+            </div>
+            <div class="second">
+              <p>Is the shipping service reliable?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>What are the shipping charges?<br /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Is the customer informed?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>How soon will the item be shipped?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="score_box">
+          <div class="score_box_head clearfix">
+            <h3>Donor - 90%</h3>
+            <h4>Goods</h4><h4>Services</h4>
+          </div>
+
+          <div class="score_box_body clearfix">
+            <div class="first">
+              <p>Is item listed as described?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Is photo of the item shown clearly?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Are all specifics accurate?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Are all details listed accurately?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+            </div>
+            <div class="second">
+              <p>Is the shipping service reliable?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>What are the shipping charges?<br /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>Is the customer informed?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+              <p>How soon will the item be shipped?<br /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/yellow_star.png" /><img src="/assets/gray_star.png" /><img src="/assets/gray_star.png" /></p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end .indent -->
+      <%= submit_tag("submit", :id => 'submit_my_account') %>
+    <% end %>
+
+</section>

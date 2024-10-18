@@ -1,0 +1,5 @@
+<%= form_for @discussion, :url => community_discussions_path(@community.id), :html => { :id => "reply-comment" }, :remote => true do |f| %>
+  <%= f.text_area :body, :placeholder =>" Post Reply", :rows => "1"%>
+  <%= f.hidden_field :parent_id, :value => @parent_comment.id %>
+  <%= submit_tag "submit", :class => "fluidbtn grnbtn",:disable_with => 'Submitting…', :id => 'reply-discussion' %>
+<% end %>

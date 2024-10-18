@@ -1,0 +1,21 @@
+<div id="main_head"><h1>My Account</h1><%= link_to('Save and Go Home', { :action => "home" }) %></div>
+
+<%= render(:partial => "nav") %>
+
+<section id="main_holder" class="blue_top">
+
+    <section class="clearfix blue_wraparound">
+    <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+    <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+        <div class="text_container">
+            <h3 class="head_main">Bonos/Trading History</h3>
+        </div>
+    </section>
+
+  <%= form_for(@account_user, :url => {:action => 'bonos_history'}, :html => {:id => 'contact_form'}) do |f| %>
+
+    <p>coming soon</p>
+
+    <% end %>
+
+</section>

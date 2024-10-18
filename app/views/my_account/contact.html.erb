@@ -1,0 +1,40 @@
+<div id="main_head"><h1>My Account</h1><%= link_to('Save and Go Home', { :action => "home" }) %></div>
+
+<%= render(:partial => "nav") %>
+
+<section id="main_holder" class="blue_top">
+
+    <section class="clearfix blue_wraparound">
+    <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+    <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+        <div class="text_container">
+            <h3 class="head_main">Contact</h3>
+        </div>
+    </section>
+
+  <%= form_for(@account_user, :url => {:action => 'update'}, :html => {:id => ''}) do |f| %>
+
+    <%= f.fields_for :account_contact do |t| %>
+
+      <h3><%= image_tag('one.png') %>Current Contact Information</h3>
+        <div class="indent first_col">
+          <h4 class="labeler">Primary Email</h4>
+          <p><%= t.text_field(:primary_email, :id => '', :placeholder => 'Email') %></p>
+          <h4 class="labeler">Secondary Email</h4>
+          <p><%= t.text_field(:secondary_email, :id => '', :placeholder => 'Email') %></p>
+        </div>
+
+        <div class="second_col">
+          <h4 class="labeler">Primary Phone</h4>
+          <p><%= t.text_field(:primary_phone, :id => '', :placeholder => 'Phone') %></p>
+          <h4 class="labeler">Secondary Phone</h4>
+          <p><%= t.text_field(:secondary_phone, :id => '', :placeholder => 'Phone') %></p>
+        </div>
+
+     <% end %>
+
+      <%= submit_tag("submit", :id => 'submit_my_account') %>
+
+    <% end %>
+
+</section>

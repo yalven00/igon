@@ -1,0 +1,102 @@
+<%= stylesheet_link_tag 'page', 'page-style', 'carousel-skin', 'carousel-skin2' %>
+
+<div id='media-modal' style='padding:10px; background:#fff;'>
+  <ul id="modal-body" class="media-modal">
+    <li>
+     <section class="media-items">
+        <div id="mycarousel" class="jcarousel-skin-tango">
+          <div class="jcarousel-scroll">
+            <a href="#" id="mycarousel-prev">&nbsp;</a>
+            <a href="#" id="mycarousel-next">&nbsp;</a>
+          </div>
+          <ul>
+            <% @community.images.each do |image| %>
+              <li><%= link_to (image_tag(image.image_url)), '#', :class => 'canvas' %></li>
+            <% end %>
+            <li><a class="canvas video" href="#"><%= video_tag "movie.mp4", :size => "706x406", :controls => true, :autobuffer => true, :autoplay => true %></a>99</li>
+          </ul>
+        </div>
+          <ul id="mycarousel2" class="jcarousel-skin-tango2">
+            <% @community.images.each_with_index do |image, index| %>
+              <li class="<%= 'active' if @item.to_i == index+1 %>"><a href="#"><%= image_tag image.image_url(:thumb) %><span style="display:none; "><%= index+1%></span></a></li>
+            <% end %>
+            <li class="<%= 'active' if @item.to_i == 99 %>"><a href="#"><%= raw('<span class="playbtn-media"></span>')+image_tag('thumbs/gk.png') %><span style="display:none; ">99</span></a></li>
+          </ul>
+      </section>
+    </li>
+  </ul>
+</div>
+
+<%= javascript_include_tag "jquery", "jquery.jcarousel.min" %>
+<script type="text/javascript">
+  function mycarousel_initCallback(carousel) {
+    jQuery('#mycarousel2 li').bind('click', function() {
+        carousel.scroll(jQuery.jcarousel.intval(jQuery(this).text()));
+        $('#mycarousel2').find('li').removeClass('active')
+        $(this).addClass('active')
+        return false;
+    });
+
+    jQuery('.jcarousel-scroll select').bind('change', function() {
+        carousel.options.scroll = jQuery.jcarousel.intval(this.options[this.selectedIndex].value);
+        return false;
+    });
+
+    jQuery('#mycarousel-next').bind('click', function() {
+        carousel.next();
+        if(carousel.first == 11 || carousel.first == 22 || carousel.first == 33){
+          $('#mycarousel2').jcarousel("next");
+        };
+        control = $('#mycarousel2').find('li.active')
+        control.removeClass('active')
+        control.next('li').addClass('active')
+        return false;
+    });
+
+    jQuery('#mycarousel-prev').bind('click', function() {
+        carousel.prev();
+        if(carousel.first == 10 || carousel.first == 21 || carousel.first == 32){
+          $('#mycarousel2').jcarousel("prev");
+        };
+        control = $('#mycarousel2').find('li.active')
+        control.removeClass('active')
+        control.prev('li').addClass('active')
+        return false;
+    });
+  };
+
+  jQuery(document).ready(function() {
+    var item = "<%= @item %>";
+    jQuery("#mycarousel").jcarousel({
+      scroll: 1,
+      start: 2,
+      wrap: 'both',
+      initCallback: mycarousel_initCallback,
+      buttonNextHTML: null,
+      buttonPrevHTML: null,
+
+      itemVisibleInCallback: function(carousel, liElement, obejctli, liindex, listate){
+        var item_URL = $(liElement).children('a').attr('class');
+        video = $(liElement).children('a').hasClass('video');
+        if(video){
+          $('.jcarousel-scroll a').addClass('video')
+        }else{
+          $('.jcarousel-scroll a').removeClass('video')
+        }
+      },
+
+      setupCallback: function(carousel){
+        carousel.scroll(jQuery.jcarousel.intval(item));
+      }
+    });
+
+    jQuery("#mycarousel2").jcarousel({
+      scroll: 8,
+      wrap: 'both',
+      setupCallback: function(carousel){
+        carousel.scroll(jQuery.jcarousel.intval(item));
+      }
+    });
+
+  });
+</script>

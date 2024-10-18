@@ -1,0 +1,45 @@
+<% @page_title = "personal" %>
+
+<!--<div class="clearfix">
+  <div class="header_icon first"><%= image_tag('account_setup_personal.jpg') %><br />personal</div>
+  <div class="header_icon"><%= image_tag('account_setup_needs.jpg') %><br />needs</div>
+  <div class="header_icon"><%= image_tag('account_setup_skills.jpg') %><br />skills</div>
+  <div class="header_icon selected"><%= image_tag('account_setup_connections.jpg') %><br />connections</div>
+</div>-->
+            <%= form_for(:feedback, :remote => true, :url => {:action => 'create', :controller => 'feedback'}, :html => {:id => 'contact_form'}) do |f| %>
+
+        <section id="main_holder" class="blue_top">
+
+                  <section class="clearfix blue_wraparound">
+            <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+            <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+                      <div class="text_container">
+                          <h3 class="head_main">Profile Setup</h3>
+              <section class="head_info">
+                <p><span id="step">Step <strong>4</strong> of <strong>4</strong></span><br />
+                  <span class="green">75%</span> Complete
+                </p>
+              </section>
+              <h4 id="subhead_account_setup">Connections</h4>
+                      </div>
+                  </section>
+
+          <div class="clearfix">
+            <div id="connections_steps">
+              <h3><%= image_tag('one.png') %>Tell your network</h3>
+              <p class="explanation">Sign in and post to one of your networks</p>
+              <p class="links top"><a href="#"><%= image_tag('connections_fb.png', :class => '') %><br />Facebook</a><a href="#"><%= image_tag('connections_googleplus.png', :class => '') %><br />Google+</a><a href="#"><%= image_tag('connections_twitter.png', :class => '') %><br />Twitter</a><a href="#"><%= image_tag('connections_linked.png', :class => '') %><br />LinkedIn</a></p>
+              <h3><%= image_tag('two.png') %>Tell your email contacts</h3>
+              <p class="explanation">Use one or more of your contact lists to connect with them here</p>
+              <p class="links"><a href="#"><%= image_tag('connections_gmail.png', :class => '') %><br />Gmail</a><a href="#"><%= image_tag('connections_yahoo.png', :class => '') %><br />Yahoo</a><a href="#"><%= image_tag('connections_msn.png', :class => '') %><br />MSN/Hotmail</a></p>
+            </div>
+          </div>
+
+              </section><!--END #main_holder-->
+
+        <!--<%= submit_tag("submit", :id => '') %>-->
+        <section id="submit_section">
+          <a href="/my_account/home" class="submit"><%= image_tag('setup_submit.jpg', :class => '') %></a>
+          <p class="hoverline">complete setup!</p>
+        </section>
+            <% end %>

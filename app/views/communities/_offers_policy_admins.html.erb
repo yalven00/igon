@@ -1,0 +1,122 @@
+<%= stylesheet_link_tag 'page-style'%>
+<style type="text/css">
+  .mouseover-offers-close {
+    background: url("/assets/image-sprites.png") no-repeat scroll 0 0 transparent;
+    background-position: -78px 4px;
+    cursor: pointer;
+    height: 56px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 54px;
+    z-index: 8040;
+  }
+</style>
+
+<li>
+  <section class="top-content">
+    <p>top 5 offers</p>
+  </section>
+  <ul class="thumbnail">
+    <% @top_offers.each do |offer| %>
+      <li class='tip-offers' rel="#offers_<%= offer.id %>">
+        <% if !offer.images.blank? && image_presence(offer.images.first.image_url) %>
+          <%= link_to (image_tag offer.images.first.image_url(:thumb)), community_get_offers_path(:community_id => @community.id, :id => offer.id), :class => 'qtip-offers' %>
+        <% else %>
+          <%= link_to (image_tag "#{['thumbs/basketb.png', 'thumbs/hockeyb.png', 'thumbs/barbel.png', 'thumbs/footb.png', 'thumbs/soccerb.png'].sample}"), community_get_offers_path(:community_id => @community.id, :id => offer.id), :class => 'qtip-offers' %>
+        <% end %>
+        <%= render 'offers', :offer => offer %>
+      </li>
+    <% end %>
+ </ul>
+</li>
+<li>
+  <section class="top-content">
+    <p>membership policy</p>
+  </section>
+  <p>Ships only in the continential US. I use UPS so rates could change based on location. Contact me for exact quote.</p>
+</li>
+<li>
+  <section class="top-content">
+    <p>admin(s)</p>
+  </section>
+  <ul class="thumbnail">
+    <% @admins.each do |admin| %>
+      <li class='tip-admins button' rel="#admins_<%= admin.id %>">
+        <% if !admin.images.blank? && image_presence(admin.images.first.image_url) %>
+          <%= link_to (image_tag admin.images.first.image_url(:thumb)), community_get_admins_path(:community_id => @community.id, :id => admin.id), :class => 'qtip-admins' %>
+        <% else %>
+          <%= link_to (image_tag "thumbs/ph#{[*1..5].sample}.jpg"), community_get_admins_path(:community_id => @community.id, :id => admin.id), :class => 'qtip-admins' %>
+        <% end %>
+        <%= render 'admins', :admin => admin %>
+      </li>
+    <% end %>
+  </ul>
+</li>
+
+<script type="text/javascript">
+  //Offers tooltips
+  $(document).ready(function(){
+    $('li.tip-offers').each(function(){
+      $(this).qtip({
+        content: $($(this).attr("rel")).html(),
+        position: {
+          my: 'left center',
+          at: 'right center',
+          adjust: {
+            y: 0,
+            x:-42
+          },
+        },
+        style: {
+           height:480,
+           tip:false,
+        },
+        show: {
+          solo: true,
+          effect: function(){ $(this).animate({ marginLeft: -20 },0).animate({ marginLeft: 0, opacity: "show" }); }
+        },
+        hide: false,
+        style: {
+        }
+      })
+    }).click(function(event) { event.preventDefault(); });
+    //Offer admins
+    $('li.tip-admins').each(function(){
+      $(this).qtip({
+        content: $($(this).attr("rel")).html(),
+        position: {
+          my: 'right center',
+          at: 'left center',
+          adjust: {
+            y: 20,
+            x:60
+          },
+        },
+        style: {
+           height:480,
+           tip:false,
+        },
+        show: {
+          solo: true,
+          effect: function(){ $(this).animate({ marginLeft: -20 },0).animate({ marginLeft: 0, opacity: "show" }); }
+        },
+        hide: false,
+        style: {
+        }
+      })
+    }).click(function(event) { event.preventDefault(); });
+  });
+
+  $('.mouseover-offers-close').live('click', function() {
+    $(this).parents('.qtip').hide();
+  });
+
+  // $('#mouseover.left-side').mouseleave(function(){
+  //   var timer = 0;
+  //   clearTimeout(timer);
+  //   timer = setTimeout(function(){
+  //   $('#mouseover.left-side').parents('.qtip').hide();
+  //   }, 2000);
+  // });
+</script>

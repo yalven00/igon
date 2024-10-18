@@ -1,0 +1,42 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".minimize-reply").click(function(){
+      var parent_id = $(this).attr('parent');
+      $("#slide_"+parent_id).slideUp("slow", function(){
+        var number_after = $("#slide_"+parent_id+" span.small-balloon").text()
+        $("#parent_box_"+parent_id+" span.small-balloon").text(number_after)
+        $("#parent_box_"+parent_id).show();
+        $("#slide_"+parent_id).remove();
+      });
+      return false;
+    });
+  });
+</script>
+<section class="nt" id="slide_<%= @parent_comment.id %>" class='slide-box'>
+  <section class="private-container" style='background-color: #E6E7E8;'>
+    <%= link_to 'minimize', '', :class => "fluidbtn yellowbtn minimize-reply", :parent => @parent_comment.id %>
+    <ul class="private-discussion" id="expanded-reply" style="background-color: #E6E7E8;">
+      <li>
+        <figure class="canvas">
+          <span class="sprites small-balloon"><%= @parent_comment.children.size%></span>
+          <% if !@parent_comment.account_user.images.blank? && image_presence(@parent_comment.account_user.images.first.image_url) %>
+            <%= image_tag @parent_comment.account_user.images.first.image_url %>
+          <% else %>
+             <%= image_tag ("thumbs/ph8.jpg")%>
+          <% end %>
+        </figure>
+        <p>
+          <% if @parent_comment.public %>
+            <%= (@parent_comment.order_number.to_i-(@public_discussions.total_entries+1)).abs %>
+          <% else %>
+            <%= (@parent_comment.order_number.to_i-(@private_discussions.total_entries+1)).abs %>
+          <% end %>
+          : <%= @parent_comment.body %>
+        </p>
+        <small><p><%= distance_of_time_in_words(@parent_comment.created_at, Time.now, true)%></p></small>
+      </li>
+      <%= render 'comment_childs' %>
+    </ul>
+    <div id="reply-form"><%= render 'reply_form' %></div>
+  </section>
+</section>

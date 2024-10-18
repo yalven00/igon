@@ -1,0 +1,82 @@
+/* Elastislide Style */
+.es-carousel-wrapper{
+	padding:13px 0 0;
+	position:relative;
+}
+.es-carousel{
+	overflow:hidden;
+	background:#ffffff;
+	max-width:750px;
+}
+.es-carousel ul{
+	display:none;
+}
+.es-carousel ul li{
+	height:100%;
+	float:left;
+	display:block;
+	margin-right:17.5px !important;
+	width:49px !important;
+	height:49px !important;
+}
+.es-carousel ul li a{
+	display:block;
+	border-style:solid;
+	border-color:#ffffff;
+	opacity:0.8;
+	-webkit-touch-callout:none;
+	/* option */
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+.es-carousel ul li.selected a{
+	border-color:#fff;
+	opacity:1.0;
+}
+.es-carousel ul li a img{
+	display:block;
+	border:none;
+	max-height:100%;
+	max-width:100%;
+}
+
+
+
+
+.es-nav span{
+	position:absolute;
+	top:-394px;
+	background:transparent url(../images/elastislide-btn.png) no-repeat top left;
+	width:73px;
+	height:410px;
+	margin-top:-13px;
+	cursor:pointer;
+	opacity:0.6;
+	text-indent:-99999px;
+}
+.es-nav span.es-nav-prev{
+	left:0;
+	background-position: -15px -10px;
+}
+.es-nav span.es-nav-next{
+	right:0;
+	left:auto;
+	background-position: -95px -10px;
+}
+
+.es-nav span:hover{
+	opacity:0.4;
+    -moz-opacity:0.4;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+}
+
+.es-nav span.es-nav-prev:active {
+	left:-1px;
+}
+
+.es-nav span.es-nav-next:active {
+	right:-1px;
+}

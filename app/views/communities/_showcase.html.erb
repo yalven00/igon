@@ -1,0 +1,59 @@
+<section class="top-content">
+  <ul id="slider" class="sc-slider">
+    <% @showcase.each do |product| %>
+    <li class="sc-items <%= cycle('current', ' ', ' ', ' ') %>" id="showcase_<%= product.id %>">
+      <section class="top-content">
+        <figure class="sc-photo canvas">
+          <% if !product.images.blank? && image_presence(product.images.first.image_url) %>
+            <%= image_tag product.images.first.image_url %>
+          <% else %>
+            <%= image_tag 'jersey.jpg' %>
+          <% end %>
+        </figure>
+        <article class="sc-info">
+          <h4><%= product.name %></h4>
+          <small><%= product.location %></small>
+          <p><%= truncate(product.description, :length => 140) %></p>
+          <a href="#">Find out more</a>
+        </article>
+      </section>
+      <section class="bottom-content">
+        <ul class="sc-ext-info">
+          <li><a class="sprites ask" href="#"></a></li>
+          <li>
+            <figure class="canvas">
+            <% if !product.account_user.images.blank? && image_presence(product.account_user.images.first.image_url) %>
+              <%= image_tag product.account_user.images.first.image_url(:thumb) %>
+            <% else %>
+              <%= image_tag "thumbs/ph#{[*1..5].sample}.jpg" %>
+            <% end %>
+            </figure>
+          </li>
+          <li><p class="value"><%= number_with_precision(product.price, :precision => 0) %></p></li>
+        </ul>
+          <section class="btn-group">
+            <ul>
+              <li><a class="sprites btn-igo" href="#">&nbsp;</a></li>
+              <li><a class="grnbtn buy" href="#">buy now</a></li>
+            </ul>
+            <% if !product.wished(current_user.id , product.id) %>
+              <%= link_to '+ wishlist', community_add_to_wishlist_path(:community_id => 1, :product_id => product.id), :class => "red-long-btn", :remote => true, :id => "prod_#{product.id}" %>
+            <% else %>
+              <%= link_to '- wishlist', "javascript:void(0)", :class => "red-long-btn active", :remote => true, :id => "prod_#{product.id}" %>
+            <% end %>
+          </section>
+      </section>
+    </li>
+    <% end %>
+  </ul>
+  <div class="anythingControls" style="display: block;">
+    <ul class="thumbNav" id="menu-showcase">
+      <li class="first ">
+        <% @showcase.each_with_index do |product, index| %>
+          <%= link_to raw('<span>1</span>'), "#showcase_#{product.id}", :class =>"panel#{index+1} tooltip #{cycle('cur', ' ', ' ', ' ')}" %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <%= link_to raw("<i class='sprites'></i>See All"), community_showcases_path(@community.id), :class => 'all', :title=>"Show showcase", :id => "see-all-showcase" %>
+</section>

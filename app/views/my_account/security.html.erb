@@ -1,0 +1,82 @@
+<div id="main_head"><h1>My Account</h1><%= link_to('Save and Go Home', { :action => "home" }) %></div>
+
+<%= render(:partial => "nav") %>
+
+<section id="main_holder" class="blue_top">
+
+    <section class="clearfix blue_wraparound">
+    <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+    <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+        <div class="text_container">
+            <h3 class="head_main">Settings - Security and Privacy</h3>
+        </div>
+    </section>
+
+  <%= form_for(@account_user, :url => {:action => 'security'}, :html => {:id => 'contact_form'}) do |f| %>
+    <div class="top_container clearfix">
+      <h3><%= image_tag('one.png') %>Visibility</span></h3>
+        <div class="indent">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Public</th>
+                <th>Friends</th>
+                <th>Trading<br />Partners</th>
+                <th>Communities</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="header">Personal Profile:</td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+              </tr>
+              <tr>
+                <td class="header">Search View:</td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+              </tr>
+              <tr>
+                <td class="header">Search View:</td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><input type="checkbox" class="checkbox" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <h3><%= image_tag('two.png') %>Advertising Offers</h3>
+      <div class="indent">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Yes</th>
+              <th>No</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="header">Receive offers from trading partners?</td>
+              <td><input type="checkbox" class="checkbox" /></td>
+              <td><input type="checkbox" class="checkbox" /></td>
+            </tr>
+            <tr>
+              <td class="header">Receive offers from 3rd party affiliates?</td>
+              <td><input type="checkbox" class="checkbox" /></td>
+              <td><input type="checkbox" class="checkbox" /></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      <%= submit_tag("submit", :id => 'submit_my_account') %>
+    <% end %>
+
+</section>

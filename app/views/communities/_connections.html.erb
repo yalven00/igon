@@ -1,0 +1,17 @@
+<section class="bottom-content">
+  <section class="connections">
+    <h4><span>NY Rangers Connections</span>1,000 total members</h4>
+    <ul class="thumbnail">
+      <% @connections.each do |thumb| %>
+        <li>
+          <% if !thumb.images.blank? && image_presence(thumb.images.first.image_url) %>
+            <%= link_to (image_tag thumb.images.first.image_url), '#' %>
+          <% else %>
+            <%= link_to (image_tag "thumbs/ph#{[*1..5].sample}.jpg"), '#' %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+  <%= link_to raw("<i class='sprites'></i>See All"), community_connections_path(@community.id), :class => 'all', :id => "see-all-connections", :tile => 'See all connections' %>
+</section>

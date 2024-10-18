@@ -1,0 +1,61 @@
+<section class="main-info">
+  <section class="display-photo">
+    <figure class="main">
+      <%= link_to raw("<span class='sprites balloon'>#{@number_of_discussion}</span>"), community_discussions_path(@community.id), :class => "show-discussion", :title=>"Discussion" %>
+      <%= link_to image_tag(@community_images.first.image_url, :alt => @community.name), community_gallery_path(@community.id, @community_images.first.id), :class => 'media show-media', :title=>"Show media"  %>
+    </figure>
+    <ul class="thumbnail">
+      <% @community_images.each do |image| %>
+      <li>
+        <%= link_to image_tag(image.image_url(:thumb)), community_gallery_path(@community.id, image.id), :class => 'media show-media', :title=>"Show media"  %>
+      </li>
+      <% end %>
+      <li>
+        <%= link_to raw('<span class="playbtn"></span>')+image_tag('thumbs/gk.png'), community_gallery_path(@community.id, 99), :class => 'media show-media', :title=>"Show media" %>
+      </li>
+    </ul>
+  </section>
+  <section class="info">
+    <section class="top-content">
+      <section class="main-title">
+        <h2><%= @community.name %></h2>
+        <p>New York, NY <i class="sprites compass"></i></p>
+      </section>
+      <section class="badge">
+        <figure class="maestro canvas">
+          <img src="/assets/bdg-maestro.png" alt=""/>
+        </figure>
+        <p>90%</p>
+      </section>
+    </section>
+    <section class="bottom-content">
+      <p>Introducing the new 13-inch Macbook Pro. The state-of-the-art dual core Intel 56 processor delivers up to 2x faster performance (over the  previous generation of MacBook Pro). New Thunderbolt technology lets you connect high-performance peripherals and high-resolution displays to a single port, and transfer files at  lightning speeds. And with the new built-in Face Time HD camera, you can make astonishingly crisp HD video calls.</p>
+    </section>
+  </section>
+</section>
+<section class="member" id="membership">
+  <ul>
+    <li>
+      <label><%= @community.number_of_members %></label><span>members</span>
+    </li>
+    <li>
+      <label>200</label><span>offers</span>
+    </li>
+    <li>
+      <label>5</label><span>months<br/>member</span>
+    </li>
+    <li>
+      <% if current_user.membership(@community.id) %>
+        <%= link_to raw('awaiting<br/>approval'), request_membership_community_path(@community.id), :class => "grnbtn req-member", :remote => true %>
+      <% else %>
+        <%= link_to raw('request<br/>membership'), request_membership_community_path(@community.id), :class => "grnbtn req-member", :remote => true %>
+      <% end %>
+    </li>
+    <li>
+      <ul class="member-opt">
+        <li><a href="#" class="sprites mailbtn">&nbsp;</a></li>
+        <li><a href="#" class="sprites igobtn">&nbsp;</a></li>
+      </ul>
+    </li>
+  </ul>
+</section>

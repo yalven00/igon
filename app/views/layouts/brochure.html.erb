@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>igobono | <%= @page_title || 'do you?' %></title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+<!--[if IE]>
+  <%= javascript_include_tag "https://html5shiv.googlecode.com/svn/trunk/html5.js" %>
+<![endif]-->
+<!--[if lt IE 8]>
+  <%= stylesheet_link_tag "/stylesheets/ie", :media => "all" %>
+  <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js" %>
+<![endif]-->
+<!--[if IE 6]>
+    <script type="text/javascript">
+        var IE6UPDATE_OPTIONS = {
+            icons_path: "ie6update/images/"
+        }
+    </script>
+    <script type="text/javascript" src="ie6update/ie6update.js"></script>
+<![endif]-->
+  <meta name="robots" content="noindex, nofollow">
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body class="brochure <%= action_name %><%= (controller_name != "brochure") ? " "+controller_name : "" %>">
+
+  <% if !flash[:notice].blank? %>
+  <div class="noty_bar noty_theme_igb noty_layout_top noty_alert" id="noty_no_js" style="display: block;"><div class="noty_message">
+    <span class="noty_text">
+      <%= flash[:notice] %>
+      <% flash.discard %>
+    </span></div></div>
+    <% end %>
+
+  <section id="sign_in" class="container_shadow_bg">
+    <!--<%= form_tag({:action => 'attempt_account_login', :controller => 'access'}, :id => 'sign_in_form') do %>
+      <p><%= text_field_tag(:email, nil, :id => 'sign_in_email', :placeholder => 'Email') %></p>
+      <p><%= password_field_tag(:password, nil, :id => 'sign_in_password', :placeholder => 'Password') %></p>
+      <p><%= submit_tag("submit", :id => 'submit_password', :class => 'blue_button', :value => 'Sign In', :name => "submit_password") %></p>
+      <%= link_to "Create an account", :controller => "account_user", :action => "new" %>
+    <% end %>-->
+    <!--<form id="sign_in_form" action="/access/attempt_account_login" method="post">
+      <input type="text" name="email" />
+      <input type="password" name="password" />
+      <input type="submit" />
+    </form>-->
+    <form accept-charset="UTF-8" action="/access/attempt_account_login" id="sign_in_form" method="post">
+          <a href="" class="close">Close</a>
+          <p><input name="email" placeholder="Email" type="text" /></p>
+          <p><input name="password" placeholder="Password" type="password" /></p>
+          <p><input class="blue_button" id="submit_password" name="submit_password" type="submit" value="Sign In" /></p>
+          <a href="/account_user/new" id="create_account">Create an account</a>
+    </form>
+  </section>
+
+  <header>
+      <%= link_to(root_path) do %>
+      <%= image_tag('preview.png', :alt=>"Preview", :id=>"preview_banner")%>
+    <% end %>
+        <div class="main_container">
+      <%= link_to(root_path, :id => 'logo') do %>
+        <%= image_tag('logo.png', :alt=>"igobono") %>
+      <% end %>
+            <div id="main_link_nav"><%= link_to('About Us', root_path + "about", :id => 'about_link') %> | <% if session[:account_user_id].blank? %>
+  <a href="#" id="log_in_link">Log In</a>
+  <% else %>
+    <%= link_to('Log Out', :controller => 'access', :action => 'logout') %>
+  <% end %></div>
+        </div>
+    </header>
+
+  <section id="middle">
+        <div class='main_container<%= (action_name != "index" || controller_name != "brochure") ? " sub_container" : "" %>'>
+      <%= yield %>
+    </div>
+  </section>
+
+  <footer class="whitebg">
+      <nav class="hoverline">
+          <%= link_to('About Us', root_path + "about") %> | <%= link_to('Contact Us', root_path + "contact") %> | <%= link_to(sanitize('Terms &amp; Conditions'), root_path + "terms") %> | <%= link_to('Log Out', :controller => 'access', :action => 'logout') %>
+           <p id="copyright">&copy; igobono, Inc.</p>
+       </nav>
+   </footer>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29771057-1']);
+  _gaq.push(['_trackPageview'],['_trackPageLoadTime']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

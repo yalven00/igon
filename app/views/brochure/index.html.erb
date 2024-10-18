@@ -1,0 +1,6 @@
+
+
+      <%= form_for(:user, :remote => true, :url => {:action => 'create', :controller => 'users'}, :html => {:id => 'email_list', :'data-type' => 'json'}) do |f| %>
+        <%= f.text_field(:email, :id => 'email', :placeholder => 'Email') %>
+        <%= submit_tag("Notify Me", :id => 'submit_email') %>
+      <% end %>

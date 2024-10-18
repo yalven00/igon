@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>igobono | <%= @page_title || 'do you?' %></title>
+  <%= stylesheet_link_tag "application", "https://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+
+  <%= stylesheet_link_tag 'page-style', 'jquery.fancybox' %>
+
+<!--[if IE]>
+  <%= javascript_include_tag "https://html5shiv.googlecode.com/svn/trunk/html5.js" %>
+<![endif]-->
+<!--[if lt IE 8]>
+  <%= stylesheet_link_tag "/stylesheets/ie", :media => "all" %>
+  <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js" %>
+<![endif]-->
+<!--[if IE 6]>
+    <script type="text/javascript">
+        var IE6UPDATE_OPTIONS = {
+            icons_path: "ie6update/images/"
+        }
+    </script>
+    <script type="text/javascript" src="ie6update/ie6update.js"></script>
+<![endif]-->
+  <meta name="robots" content="noindex, nofollow">
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body class="internal <%= action_name %> <%= controller_name %>">
+
+	<header>
+    	<div class="clearfix">
+			<%= link_to image_tag("internal_logo.jpg", :border=>0, :size=>"156x54"), {:action => 'home'}, :id => "logo" %>
+			<nav>
+				<ul>
+					<!--<li><%= link_to('Communities', { :action => "home" }) %></li>-->
+					<li><%= link_to('Notifications', { :action => "home" }) %></li>
+					<li><%= link_to('Messages', { :action => "home" }) %></li>
+					<li><%= link_to image_tag("internal_profile_icon_eric.jpg", :border=>0, :size => "35x35"), { :action => "home" }, :class => "profile_icon" %></li>
+					<li><%= link_to({ :action => "user_login" }, :class => "last", :id=>"my_account_link") do %>
+						My Account <%= image_tag('select_marker2.png', :id => 'my_account_more_img', :size => "9x6") %><%= image_tag('select_marker_up.png', :class => 'hide', :id => 'my_account_more_img', :size => "9x6") %>
+					<% end %></li>
+					<li><%= link_to('Help', { :action => "home" }) %></li>
+				</ul>
+			</nav>
+			<div class="post_buttons">
+				<span class="post">POST</span>	
+				<a href="#" class="offer"><img src="/assets/post_offer_hand.png" width="21" height="21" /> Offer</a>
+				<a href="#" class="need"><img src="/assets/post_need_hand.png" width="21" height="21" /> Need</a>
+			</div>
+			<%= form_tag({:url => {:action => ''}}, :id => 'search_everything') do |f| %>
+				<input type="text" placeholder="Search everything..." />
+			<% end %>
+		</div>	
+    </header>
+
+	<div id="my_account_menu_container">
+			<div class="first">
+				<div id="stat_box" class="clearfix">
+					<a href="" id="next_level">next level: fellow<%= image_tag('next_level_corner.jpg') %></a>
+					<a href="" class="first_col"><%= image_tag('maestro_big.png') %></a>
+					<a href="" class="second_col">90</a>
+					<p class="third_col">
+						to move to <a href="">fellow</a>:<br />
+						earn <span class="num">100</span> <span class="type">bonos</span><br />
+						earn <span class="num">200</span> <span class="type">globes</span>	
+					</p>
+					<div id="small_stats"><p class="first"><span class="num">100</span><br />spending power</p>
+						<p class="second"><span class="num">200</span><br />bonos earned</p>
+						<p class="third"><span class="num">100</span><br />globes earned</p>
+					</div>
+				</div>
+			</div>
+			<ul class="my_account_nav">
+				<li class="head_row"><h4><%= link_to({ :action => "user_login" }) do %><%= image_tag('my_account_menu_account.png') %> Account Information <% end %></h4></li>
+				<li class="child">
+					<p><%= link_to_unless_current('User Login', { :action => "user_login" }) %></p>
+					<p><%= link_to_unless_current('Password', { :action => "password" }) %></p>
+					<p><%= link_to_unless_current('Contact', { :action => "contact" }) %></p>
+					<p><%= link_to_unless_current('Personal', { :action => "personal" }) %></p>
+					<p><%= link_to_unless_current('Languages', { :action => "languages" }) %></p>
+					<p><%= link_to_unless_current('Interests', { :action => "interests" }) %></p>
+					<p><%= link_to_unless_current('Public Profile', { :action => "public_profile" }) %></p>
+					<p><%= link_to_unless_current('Needs/Wants', { :action => "needs" }) %></p>
+					<p><%= link_to_unless_current('Skills/Offers', { :action => "skills" }) %></p>
+				</li>
+				<li class="head_row"><h4><%= link_to({ :action => "bonos_history" }) do %><%= image_tag('my_account_menu_banking.png') %> Banking Information<% end %></h4></li>
+				<li class="child"><p><a href="">Test</a></p>
+					<p><a href="">Test</a></p>
+				</li>
+				<li class="head_row"><h4><%= link_to({ :action => "default_preferences" }) do %><%= image_tag('my_account_menu_settings.png') %> Settings<% end %></h4></li>
+				<li class="child"><p><a href="">Test</a></p>
+					<p><a href="">Test</a></p>
+				</li>
+				<li class="head_row"><h4><%= link_to({ :action => "cloud_connections" }) do %><%= image_tag('my_account_menu_social.png') %> Social Information<% end %></h4></li>
+				<li child="child"><p><a href="">Test</a></p>
+					<p><a href="">Test</a></p>
+				</li>
+			</ul>
+			<div id="trading_history">
+				<div class="top">
+				<h4>Trading History</h4>
+				<p class="nav_item"><%= image_tag('featured.png') %><br />
+					Featured</p>
+				<p class="nav_item last"><%= image_tag('newest.png') %><br />
+					Newest</p>
+				</div>	
+				<div class="slide_container">
+					<!--<a href="#" class="home_main_prev"><%= image_tag('strip_prev.png', :class => "strip_prev") %></a>
+					<a href="#" class="home_main_next"><%= image_tag('strip_next.png', :class => "strip_next") %></a>-->
+					<div class="slide_holder">
+						<div class="content_box">
+								<div class="holder"><%= image_tag('http://flickholdr.com/200/200/lalala', :size => "55x55", :class => "strip_img") %>
+									<p class="bottom"><%= image_tag('get_hands.png', :size => "23x23", :class => "rightfloat") %><%= image_tag('mike.png', :class => "leftfloat profile", :size => "23x23") %></p></div>
+						</div>
+						<div class="content_box">
+								<div class="holder"><%= image_tag('http://flickholdr.com/200/200/sun', :size => "55x55", :class => "strip_img") %>
+									<p class="bottom"><%= image_tag('get_hands.png', :size => "23x23", :class => "rightfloat") %><%= image_tag('mike.png', :class => "leftfloat profile", :size => "23x23") %></p></div>
+						</div>
+						<div class="content_box">
+								<div class="holder"><%= image_tag('http://flickholdr.com/200/200/earth', :size => "55x55", :class => "strip_img") %>
+									<p class="bottom"><%= image_tag('get_hands.png', :size => "23x23", :class => "rightfloat") %><%= image_tag('mike.png', :class => "leftfloat profile", :size => "23x23") %></p></div>
+						</div>
+						<div class="content_box">
+								<div class="holder"><%= image_tag('http://flickholdr.com/200/200/nike', :size => "55x55", :class => "strip_img") %>
+									<p class="bottom"><%= image_tag('get_hands.png', :size => "23x23", :class => "rightfloat") %><%= image_tag('mike.png', :class => "leftfloat profile", :size => "23x23") %></p></div>
+						</div>
+						<div class="content_box">
+								<div class="holder"><%= image_tag('http://flickholdr.com/200/200/nike', :size => "55x55", :class => "strip_img") %>
+									<p class="bottom"><%= image_tag('get_hands.png', :size => "23x23", :class => "rightfloat") %><%= image_tag('mike.png', :class => "leftfloat profile", :size => "23x23") %></p></div>
+						</div>
+						<div class="content_box">
+								<div class="holder"><%= image_tag('http://flickholdr.com/200/200/nike', :size => "55x55", :class => "strip_img") %>
+									<p class="bottom"><%= image_tag('get_hands.png', :size => "23x23", :class => "rightfloat") %><%= image_tag('mike.png', :class => "leftfloat profile", :size => "23x23") %></p></div>
+						</div>
+					</div>	
+				</div>		
+			</div>	
+			<ul>
+				<li class="log_out"><h4><%= link_to(:controller => 'access', :action => 'logout') do %><%= image_tag('my_account_menu_logout.png') %> Log Out<% end %></h4></li>
+			</ul>
+	</div>
+    
+	<section id="middle">
+		<div class="main_container">
+			<%= yield %>
+		</div>	
+	</section>
+	
+	<% if action_name == "home" %>
+		<section id="media_viewer" class="strip">
+			<h4 id="media_header">Media</h4>
+			<a href="#" class="home_main_prev"><%= image_tag('strip_prev.png', :class => "strip_prev") %></a>
+			<a href="#" class="home_main_next"><%= image_tag('strip_next.png', :class => "strip_next") %></a>
+			<div id="media_container">
+				<%= image_tag('http://flickholdr.com/200/200/happy', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/running', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/jumping', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/august', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/march', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/freethrow', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/banana', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/origami', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/japanese', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/fish', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/yatzee', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/pancake', :size => "195x195", :class => "pop_img_bg") %>
+				<%= image_tag('http://flickholdr.com/200/200/kosher', :size => "195x195", :class => "pop_img_bg") %>
+			</div>
+		</section>
+	<% end %>
+	
+	<footer class="whitebg">
+	    <nav class="hoverline">
+       		<%= link_to('About Us', root_path + "about") %> | <%= link_to('Contact Us', root_path + "contact") %> | <%= link_to(sanitize('Terms &amp; Conditions'), root_path + "terms") %> | <%= link_to('Log Out', :controller => 'access', :action => 'logout') %>
+           <p id="copyright">&copy; igobono, Inc.</p>
+       </nav>
+   </footer>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29771057-1']);
+  _gaq.push(['_trackPageview'],['_trackPageLoadTime']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

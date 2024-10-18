@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag 'page', 'page-style', 'carousel-skin-showcase' %>
+
+<div id='showcase-modal' style='background:#fff;'>
+  <ul id="modal-body" class="inside-modal">
+    <li>
+      <section class="community-items">
+        <ul id="mycarousel" class="jcarousel-skin-tango">
+          <% @community.account_users.each do |user| %>
+            <% user.products.each do |product| %>
+              <%= render 'products' , :product => product %>
+            <% end %>
+          <% end %>
+        </ul>
+        <!-- <a href="#" class="more"><i class="sprites"></i>View more</a> -->
+      </section>
+    </li>
+    </ul>
+</div>
+
+<%= javascript_include_tag "jquery", "jquery.jcarousel.min" %>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery("#mycarousel").jcarousel({
+      scroll: 5,
+      start: 2,
+      wrap: 'both'
+    });
+  });
+</script>

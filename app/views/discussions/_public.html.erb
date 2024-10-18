@@ -1,0 +1,29 @@
+<% @public_discussions.each_with_index do |public, index| %>
+  <li id="parent_<%= public.id %>">
+    <div id="parent_box_<%= public.id %>" class="public-box">
+      <figure class="canvas">
+        <span class="sprites small-balloon"><%= public.replies %></span>
+          <% if !public.account_user.images.blank? && image_presence(public.account_user.images.first.image_url) %>
+            <%= image_tag public.account_user.images.first.image_url %>
+          <% else %>
+             <%= image_tag ("thumbs/ph8.jpg")%>
+          <% end %>
+      </figure>
+      <p><%= (public.order_number.to_i-(@public_discussions.total_entries+1)).abs %>: <%= public.body %></p>
+      <small><%= distance_of_time_in_words(public.created_at, Time.now, true)%> ago</small>
+      <section class="respond">
+        <ul id="respond_<%= public.id %>">
+          <li>
+            <%= link_to 'view', community_discussion_path(@community.id, public.id), :class => "reply-public grnbtn", :parent => public.id, :remote => true %>
+          </li>
+          <li>
+            <%= link_to 'reply', community_discussion_path(@community.id, public.id), :class => "reply-public bluebtn", :parent => public.id, :remote => true %>
+          </li>
+          <li>
+            <%= link_to 'remove', community_discussion_path(@community.id, public.id), :class => "redbtn remove-public", :remote => true, :method => :delete, :confirm => 'Are you sure?' %>
+        </li>
+        </ul>
+      </section>
+    </div>
+  </li>
+<% end %>

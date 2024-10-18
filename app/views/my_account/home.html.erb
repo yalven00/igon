@@ -1,0 +1,426 @@
+<p id="hi_account_user">Hi, <strong><%= @account_user.first_name %> <%= @account_user.last_name %></strong>. (<%= link_to('Sign Out', {:controller => 'access', :action => 'logout'}, :class => "gray_link") %>) &nbsp;|&nbsp; Learn how you can earn more bonos. Click <a href="#">here</a>.</p>
+<section id="main_holder">
+	<section class="featured strip clearfix">
+		<h3>featured</h3><br />
+		<div class="strip_container">
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/product', :size => "200x200", :class => "strip_img") %>
+					<p>new trading partner</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/design', :size => "200x200", :class => "strip_img") %>
+					<p>new trading partner</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/hat', :size => "200x200", :class => "strip_img") %>
+					<p>new trading partner</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/glove', :size => "200x200", :class => "strip_img") %>
+					<p>new trading partner</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/door', :size => "200x200", :class => "strip_img") %>
+					<p>new <%= image_tag('give_hands.png', :class => "hands", :size => "30x31") %> 60 bonos</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/computer', :size => "200x200", :class => "strip_img") %>
+					<p>new <%= image_tag('get_hands.png', :class => "hands", :size => "30x29") %> 60 bonos</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/camera', :size => "200x200", :class => "strip_img") %>
+					<p>new community</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/corn', :size => "200x200", :class => "strip_img") %>
+					<p>new <%= image_tag('get_hands.png', :class => "hands", :size => "30x29") %> 60 bonos</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/ocean', :size => "200x200", :class => "strip_img") %>
+					<p>new community</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/water', :size => "200x200", :class => "strip_img") %>
+					<p>new <%= image_tag('give_hands.png', :class => "hands", :size => "30x31") %> 60 bonos</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/newyork', :size => "200x200", :class => "strip_img") %>
+					<p>new community</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/nyrangers', :size => "200x200", :class => "strip_img") %>
+					<p>new trading partner</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/basketball', :size => "200x200", :class => "strip_img") %>
+					<p>new trading partner</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/dunk', :size => "200x200", :class => "strip_img") %>
+					<p>new trading partner</p></div>
+			</div>
+			<div class="content_box">
+				<div><%= image_tag('http://flickholdr.com/200/200/pig', :size => "200x200", :class => "strip_img") %>
+					<p>new trading partner</p></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</section>
+	
+	<%= form_for(:user, :remote => true, :url => {:action => 'home'}, :html => {:id => 'big_search_form', :'data-type' => 'json'}) do |f| %>
+		<div class="give_holder"><img class="hands" src="/assets/post_offer_hand.png" width="30" height="30" /><%= submit_tag("Give", :id => 'big_give') %></div><div class="get_holder"><img class="hands" src="/assets/post_need_hand.png" width="30" height="30" /><%= submit_tag("Get", :id => 'big_get') %></div>
+		<span class="fill_container"><%= f.text_field(:email, :id => 'big_search', :placeholder => 'Search for offer') %></span>
+	<% end %>
+	
+	<div class="topper">
+		<img src="/assets/left_wrapper_space.png" class="left_wrapper_space" />
+		<img src="/assets/right_wrapper_space.png" class="right_wrapper_space" />
+		<div><a href="" class="first blue_button selected">Recommendations</a></div><div><a href="" class="">Community Center</a></div><div><a href="" class="">Clouds</a></div><div><a href="" class="last">Updates</a></div>
+	</div>
+	<section id="main_filters">
+		<div class="jqueryui_slider" id="get_give_slider">
+			<span class="front selected"><%= image_tag('get_hands.png', :class => "colored") %><%= image_tag('get_hands_gray.png', :class => "gray") %><br />get</span>
+			<span class="back"><%= image_tag('give_hands.png', :class => "colored") %><%= image_tag('give_hands_gray.png', :class => "gray") %><br />give</span>	
+		</div>
+	</section>	
+	<section class="gray_bg strip home_main_strip offers">
+		<h3>offers</h3><br />
+		<a href="#" class="home_main_prev"><%= image_tag('strip_prev.png', :class => "strip_prev") %></a>
+		<a href="#" class="home_main_next"><%= image_tag('strip_next.png', :class => "strip_next") %></a>
+		<div class="strip_container">
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/lalala', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Longer Title</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/donut', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/equal', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/times', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/awesome', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">230</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/purple', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/logo', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/hockey', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/american', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/russian', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/jewish', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/deli', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">130</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/kosher', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/organic', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<p class="view_more_holder"><a href=""><%= image_tag('setup_more.png', :size => "9x10", :class => "strip_img") %> view more</a></p>
+	</section>
+	
+	<section class="gray_bg strip home_main_strip friends">
+		<h3>friends</h3><br />
+		<a href="#" class="home_main_prev"><%= image_tag('strip_prev.png', :class => "strip_prev") %></a>
+		<a href="#" class="home_main_next"><%= image_tag('strip_next.png', :class => "strip_next") %></a>
+		<div class="strip_container">
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/parent', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Longer Title</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/community', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/pen', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">230</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/drawing', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/logo', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/hockey', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/american', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/russian', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/jewish', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/deli', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">130</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/kosher', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/organic', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<p class="view_more_holder"><a href=""><%= image_tag('setup_more.png', :size => "9x10", :class => "strip_img") %> view more</a></p>
+	</section>
+	
+	<section class="gray_bg strip home_main_strip communities">
+		<h3>communities</h3><br />
+		<a href="#" class="home_main_prev"><%= image_tag('strip_prev.png', :class => "strip_prev") %></a>
+		<a href="#" class="home_main_next"><%= image_tag('strip_next.png', :class => "strip_next") %></a>
+		<div class="strip_container">
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/bargain', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Longer Title</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/community', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/pen', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">230</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/drawing', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/logo', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/hockey', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/american', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/russian', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/jewish', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/deli', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">130</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/kosher', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/organic', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<p class="view_more_holder"><a href=""><%= image_tag('setup_more.png', :size => "9x10", :class => "strip_img") %> view more</a></p>
+	</section>
+	
+	<section class="gray_bg strip home_main_strip trading_partners">
+		<h3>trading partners</h3><br />
+		<a href="#" class="home_main_prev"><%= image_tag('strip_prev.png', :class => "strip_prev") %></a>
+		<a href="#" class="home_main_next"><%= image_tag('strip_next.png', :class => "strip_next") %></a>
+		<div class="strip_container">
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/everyone', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Longer Title</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/community', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/pen', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">230</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/drawing', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/logo', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/hockey', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/american', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/russian', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/jewish', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/deli', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">130</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/kosher', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+			<div class="content_box">
+				<div class="holder"><%= image_tag('http://flickholdr.com/200/200/organic', :size => "180x180", :class => "strip_img") %>
+					<p><a href="">Jet Ski</a></p>
+					<p class="bottom"><%= image_tag('get_hands.png', :size => "33x32", :class => "leftfloat") %><span class="rightfloat">30</span><%= image_tag('mike.png', :class => "profile", :size => "30x30") %></p></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<p class="view_more_holder"><a href=""><%= image_tag('setup_more.png', :size => "9x10", :class => "strip_img") %> view more</a></p>
+	</section>
+		
+</section>

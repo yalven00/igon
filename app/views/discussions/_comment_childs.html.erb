@@ -1,0 +1,18 @@
+<% unless @child_comments.blank? %>
+  <% @child_comments.each do |p| %>
+    <li class="<%= cycle('even', '') -%>">
+      <figure class="canvas">
+        <!-- <span class="sprites small-balloon">2</span> -->
+        <% if !p.account_user.images.blank? && image_presence(p.account_user.images.first.image_url) %>
+          <%= image_tag p.account_user.images.first.image_url %>
+        <% else %>
+           <%= image_tag ("thumbs/ph8.jpg")%>
+        <% end %>
+      </figure>
+      <p>
+        Reply <%= (p.order_number-1).abs %>: <%= p.body %>
+      </p>
+      <small><%= distance_of_time_in_words(p.created_at, Time.now, true)%></small>
+    </li>
+  <% end %>
+<% end %>

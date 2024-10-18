@@ -1,0 +1,22 @@
+<nav id="my_account_items">
+  <ul>
+    <li class="head_row" id="account_information_nav"><h4><%= link_to('Account Information', { :action => "user_login" }) %></h4></li>
+    <li><%= link_to_unless_current('User Login', { :action => "user_login" }) %></li>
+    <li><%= link_to_unless_current('Password', { :action => "password" }) %></li>
+    <li><%= link_to_unless_current('Contact', { :action => "contact" }) %></li>
+    <li><%= link_to_unless_current('Personal', { :action => "personal" }) %></li>
+    <li><%= link_to_unless_current('Public Profile', { :action => "public_profile" }) %></li>
+    <li><%= link_to_unless_current('Needs/Wants', { :action => "needs" }) %></li>
+    <li><%= link_to_unless_current('Skills/Offers', { :action => "skills" }) %></li>
+    <li class="head_row" id="banking_information_nav"><h4><%= link_to('Banking Information', { :action => "bonos_history" }) %></h4></li>
+    <li><%= link_to_unless_current('Bonos/Trading History', { :action => "bonos_history" }) %></li>
+    <li><%= link_to_unless_current('Merchant Account', { :action => "merchant_account" }) %></li>
+    <li class="head_row" id="settings_nav"><h4><%= link_to('Settings', { :action => "default_preferences" }) %></h4></li>
+    <li><%= link_to_unless_current('Default Preferences', { :action => "default_preferences" }) %></li>
+    <li><%= link_to_unless_current('Security and Privacy', { :action => "security" }) %></li>
+    <li class="head_row" id="social_information_nav"><h4><%= link_to('Social Information', { :action => "cloud_connections" }) %></h4></li>
+    <li><%= link_to_unless_current('Cloud Connections', { :action => "cloud_connections" }) %></li>
+    <li><%= link_to_unless_current('Social Score', { :action => "social_score" }) %></li>
+    <li><%= link_to_unless_current('Links to Networks', { :action => "network_links" }) %></li>
+  </ul>
+</nav>

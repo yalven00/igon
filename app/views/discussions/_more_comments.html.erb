@@ -1,0 +1,13 @@
+<li>
+  <figure class="canvas">
+    <span class="sprites small-balloon">2</span>
+    <% if !@parent_comment.account_user.images.blank? && image_presence(@parent_comment.account_user.images.first.image_url) %>
+      <%= image_tag @parent_comment.account_user.images.first.image_url %>
+    <% else %>
+       <%= image_tag ("thumbs/ph8.jpg")%>
+    <% end %>
+  </figure>
+  <p><%= @parent_comment.body %></p>
+  <small><%= distance_of_time_in_words(@parent_comment.created_at, Time.now, true)%></small>
+</li>
+<%= render 'comment_childs' %>

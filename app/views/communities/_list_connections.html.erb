@@ -1,0 +1,30 @@
+<section class="connection-group">
+  <ul class="connection-items">
+    <% @connections.each do |connection|%>
+      <li>
+        <figure class="canvas">
+          <% if !connection.images.blank? && image_presence(connection.images.first.image_url) %>
+            <%= image_tag connection.images.first.image_url %>
+          <% else %>
+             <%= image_tag ("thumbs/ph8.jpg")%>
+          <% end %>
+        </figure>
+        <p>
+          <% if connection.fullname.length > 13 %>
+            <%= connection.first_name.titleize %>
+          <% else %>
+            <%= connection.fullname.titleize %>
+          </p>
+          <% end %>
+        <ul>
+          <li><p>brooklyn, NY</p></li>
+          <li class="badge">
+            <figure class="maestro canvas">
+              <img alt="" src="/assets/bdg-maestro.png">
+            </figure>
+          </li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</section>

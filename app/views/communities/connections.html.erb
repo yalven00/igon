@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag 'page', 'page-style' %>
+<div id='connection-modal' style='padding:10px; background:#fff;'>
+  <ul id="modal-body" class="inside-modal">
+    <li>
+      <%= form_tag community_connections_path(@community.id), :method => 'get', :id => "connections_search"  do %>
+        <section class="search-input">
+          <span class="sprites search-icon">&nbsp;</span>
+          <%= text_field_tag :search, params[:search], :id => "search", :placeholder => "Search for connection" %>
+        </section>
+      <% end %>
+    </li>
+    <li>
+      <div id="connections"><%= render 'list_connections'%></div>
+    </li>
+  </ul>
+</div>
+
+<%= javascript_include_tag "jquery" %>
+<script type="text/javascript">
+  // Keyup on connections search
+  $(function() {
+    $("#connections_search input").keyup(function() {
+      var timer;
+      clearInterval(timer);
+      timer = setTimeout(function() {
+        $.get($("#connections_search").attr("action"), $("#connections_search").serialize(), null, "script");
+        return false;
+      }, 300);
+    });
+  });
+</script>

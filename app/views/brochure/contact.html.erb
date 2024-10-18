@@ -1,0 +1,26 @@
+<% @page_title = "contact us" %>
+<h2>Contact Us</h2>
+            <section id="main_holder">
+
+                <%= form_for(:feedback, :remote => true, :url => {:action => 'create', :controller => 'feedback'}, :html => {:id => 'contact_form', :'data-type' => 'json'}) do |f| %>
+          <div id="img_container">
+            <%= image_tag('contact_map.jpg', :id => 'contact_img') %>
+          </div>
+                    <div id="fields">
+            <p><%= f.text_field(:first_name, :id => 'contact_first', :placeholder => 'First Name') %></p>
+            <p><%= f.text_field(:last_name, :id => 'contact_last', :placeholder => 'Last Name') %></p>
+                      <p><%= f.text_field(:email, :id => 'contact_email', :placeholder => 'Email') %></p>
+                      <p><%= f.text_area(:message, :id => 'contact_message', :placeholder => 'Message') %></p>
+          </div>
+          <%= submit_tag("submit", :id => 'submit_contact') %>
+                <% end %>
+
+              <div id="registerErrors">
+                <% if !flash[:notice].blank? %>
+            <div class='<%= flash[:notice] == "Success." ? "success" : "error" %>'>
+            <%= flash[:notice] %>
+            </div>
+          <% end %>
+              </div>
+
+            </section>

@@ -1,0 +1,70 @@
+<div id="main_head"><h1>My Account</h1><%= link_to('Save and Go Home', { :action => "home" }) %></div>
+
+<%= render(:partial => "nav") %>
+
+<section id="main_holder" class="blue_top">
+
+    <section class="clearfix blue_wraparound">
+    <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+    <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+        <div class="text_container">
+            <h3 class="head_main">Default Preferences</h3>
+        </div>
+    </section>
+
+  <%= form_for(@account_user, :url => {:action => 'update'}, :html => {:id => 'contact_form'}) do |f| %>
+    <%= f.fields_for :preference_list do |t| %>
+
+    <div class="top_container clearfix">
+      <h3><%= image_tag('one.png') %>Location <span>(select only one)</span></h3>
+      <div class="indent">
+        <div class="first">
+          <!--<input type="radio" class="radio_button" />--><%= t.radio_button(:home, true, :id => '', :class => '') %><br />
+          <h3>Home</h3>
+          <p class="leftfloat"><%= @account_user.address.line_1 %><br />
+            <%= raw @account_user.address.line_2 + "<br />".html_safe if !@account_user.address.line_2.blank? %>
+          <%= @account_user.address.city %> <%= @account_user.address.state %> <%= @account_user.address.zip %> <%= @account_user.address.country %></p>
+        </div>
+        <div class="second">
+          or
+        </div>
+        <div class="third">
+          <!--<input type="radio" class="radio_button" />--><%= t.radio_button(:home, false, :id => '', :class => '') %><br />
+          <h3>Travel Destination</h3>
+          <%= t.text_field(:destination, :id => 'destination', :placeholder => 'Destination') %> <img src="/assets/flags/United-States.png" id="flag">
+          <p id="date_container">Select your start and end dates:
+            <%= t.text_field(:start, :id => 'from', :placeholder => 'Start') %>
+            <%= t.text_field(:end, :id => 'to', :placeholder => 'End') %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+      <h3><%= image_tag('two.png') %>Preferences</h3>
+      <div class="indent">
+        <table class="more_spacing">
+          <thead>
+            <tr>
+              <th></th>
+              <th>List</th>
+              <th>Map</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="header">Recommendation View:</td>
+              <td><input type="radio" class="radio_button" /></td>
+              <td><input type="radio" class="radio_button" /></td>
+            </tr>
+            <tr>
+              <td class="header">Search View:</td>
+              <td><input type="radio" class="radio_button" /></td>
+              <td><input type="radio" class="radio_button" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= submit_tag("submit", :id => 'submit_my_account') %>
+    <% end %>
+
+</section>

@@ -1,0 +1,9 @@
+<% if @user.errors.size > 0 %>
+  $("#registerErrors").css('display','block').html("<div class='error'><%=j flash.discard(:notice) %></div>")
+<% else %>
+  $("#registerErrors").css('display','block').html("<div class='success'><%=j flash.discard(:notice) %></div>")
+  $("form").each(function(){
+    this.reset()
+  })
+<% end %>
+$.modal.close()

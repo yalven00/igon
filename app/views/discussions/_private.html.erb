@@ -1,0 +1,23 @@
+<% @private_discussions.each_with_index do |private, index| %>
+  <li id="parent_<%= private.id %>">
+    <div id="parent_box_<%= private.id %>" class="public-box">
+      <figure class="canvas">
+        <span class="sprites small-balloon"><%= private.replies %></span>
+        <% if !private.account_user.images.blank? && image_presence(private.account_user.images.first.image_url) %>
+          <%= image_tag private.account_user.images.first.image_url %>
+        <% else %>
+           <%= image_tag ("thumbs/ph8.jpg")%>
+        <% end %>
+      </figure>
+      <p><%= (private.order_number.to_i-(@private_discussions.total_entries+1)).abs %>: <%= private.body %></p>
+      <small><%= distance_of_time_in_words(private.created_at, Time.now, true)%> ago</small>
+      <section class="respond">
+        <ul id="respond_<%= private.id %>">
+          <li><%= link_to 'view', community_discussion_path(@community.id, private.id), :class => "reply-private grnbtn", :parent => private.id, :remote => true %></li>
+          <li><%= link_to 'reply', community_discussion_path(@community.id, private.id), :class => "reply-private bluebtn", :parent => private.id, :remote => true %></li>
+          <li><%= link_to 'remove', community_discussion_path(@community.id, private.id), :class => "redbtn remove-private", :method => :delete, :confirm => 'Are you sure?', :remote => true %></li>
+        </ul>
+      </section>
+    </div>
+  </li>
+<% end %>

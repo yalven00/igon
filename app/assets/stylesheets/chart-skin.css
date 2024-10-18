@@ -1,0 +1,56 @@
+.chart {
+	padding: 10px;
+	background-color: #f2f2f2;
+	float: left;
+}
+
+.chart > .chart-title {
+	width:100%;
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.chart > .chart-bar {
+	height: 80px;
+}
+
+.chart > .chart-bar > li {
+	background-color: #f2f2f2;
+	display: block;
+	height: 80px;
+	font-weight: bold;
+	position: relative;
+}
+
+.chart > .chart-bar > li > span {
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 47px;
+	left: 0;
+	background-color: #B4BBC7;
+	vertical-align: bottom;
+}
+
+.chart > .chart-bar > li > span > small {
+	position: absolute;
+	bottom: 0;
+	width: 47px;
+	left: 0;	
+}
+
+.chart > .chart-bar-title > li {
+	text-transform: capitalize;
+}
+
+.chart > ul > li {
+	width:47px;
+	float: left;
+	text-align: center;
+}
+
+.chart > ul  > li + li {
+	margin-left: 10px;
+}

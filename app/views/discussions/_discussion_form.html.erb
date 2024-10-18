@@ -1,0 +1,54 @@
+<style type="text/css">
+  input.checkbox { display: none; }
+</style>
+
+<section class="header">
+  <h5>Discussion - NY rangers</h5>
+  <p>It's easy to communicate with other members. You control the privacy settings -- select "private" to keep the conversation between you or "public" to include others in your discussion.  Your message is limited to 300 characters.</p>
+</section>
+
+<section class="post-mssg">
+  <%= form_for @discussion, :url => community_discussions_path(@community.id), :id => 'form-discussion', :remote => true  do |f| %>
+    <%= f.text_area :body, :placeholder =>" Post Message", :rows => "4"%>
+      <section class="visible">
+        <label>public</label>
+          <section class="visible-toggle">
+            <a href="#" class="public-toggle">&nbsp;</a>
+            <a href="#" class="active private-toggle">&nbsp;</a>
+            <%= f.radio_button :public, true, :id => "checkbox", :class => "checkbox", :checked => false %>
+          </section>
+        <label>private</label>
+      </section>
+    <%= f.submit "submit", :class => "grnbtn long-submit-btn",:disable_with => 'Submitting…', :id => 'submit-discussion' %>
+  <% end %>
+</section>
+<script>
+  $(document).ready( function(){
+    $(".public-toggle").click(function(){
+      $('.private-toggle').removeClass('active');
+      $(this).addClass('active');
+      $('.checkbox').attr('checked', true);
+      return false;
+    });
+    $(".private-toggle").click(function(){
+      $('.public-toggle').removeClass('active');
+      $(this).addClass('active');
+      $('.checkbox').attr('checked', false);
+       return false;
+    });
+
+    $(document).ajaxStart(function() {
+      $.blockUI({
+        css: {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff'
+        }
+      });
+    }).ajaxStop($.unblockUI);
+  });
+</script>

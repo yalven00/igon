@@ -1,0 +1,96 @@
+<div id="main_head"><h1>My Account</h1><%= link_to('Save and Go Home', { :action => "home" }) %></div>
+
+<%= render(:partial => "nav") %>
+
+<section id="main_holder" class="blue_top">
+
+    <section class="clearfix blue_wraparound">
+    <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+    <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+        <div class="text_container">
+            <h3 class="head_main">Links to Networks</h3>
+        </div>
+    </section>
+
+  <%= form_for(@account_user, :url => {:action => 'network_links'}, :html => {:id => 'contact_form'}) do |f| %>
+    <div class="clearfix">
+      <h3><%= image_tag('one.png') %>Network Connections</span></h3>
+        <div class="indent top_container">
+          <table class="more_spacing">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th>Active</th>
+                <th>Inactive</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="header"><a href="#">Facebook</a></td>
+                <td><img src="/assets/networks_small_facebook.jpg" /></td>
+                <td><input type="radio" class="radio_button" /></td>
+                <td><input type="radio" class="radio_button" /></td>
+              </tr>
+              <tr>
+                <td class="header"><a href="#">Google+</a></td>
+                <td><img src="/assets/networks_small_googleplus.jpg" /></td>
+                <td><input type="radio" class="radio_button" /></td>
+                <td><input type="radio" class="radio_button" /></td>
+              </tr>
+              <tr>
+                <td class="header"><a href="#">Twitter</a></td>
+                <td><img src="/assets/networks_small_twitter.jpg" /></td>
+                <td><input type="radio" class="radio_button" /></td>
+                <td><input type="radio" class="radio_button" /></td>
+              </tr>
+              <tr>
+                <td class="header"><a href="#">LinkedIn</a></td>
+                <td><img src="/assets/networks_small_linkedin.jpg" /></td>
+                <td><input type="radio" class="radio_button" /></td>
+                <td><input type="radio" class="radio_button" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      <h3><%= image_tag('two.png') %>Email Contact Lists</h3>
+      <div class="indent">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Imported</th>
+              <th>Not Imported</th>
+              <th>Date of<br />Last Import</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="header"><a href="#">Gmail</a></td>
+              <td><img src="/assets/networks_small_gmail.jpg" /></td>
+              <td><input type="radio" class="radio_button" /></td>
+              <td><input type="radio" class="radio_button" /></td>
+              <td>3/24/2012</td>
+            </tr>
+            <tr>
+              <td class="header"><a href="#">Yahoo!</a></td>
+              <td><img src="/assets/networks_small_yahoo.jpg" /></td>
+              <td><input type="radio" class="radio_button" /></td>
+              <td><input type="radio" class="radio_button" /></td>
+              <td>--</td>
+            </tr>
+            <tr>
+              <td class="header"><a href="#">MSN</a></td>
+              <td><img src="/assets/networks_small_msn.jpg" /></td>
+              <td><input type="radio" class="radio_button" /></td>
+              <td><input type="radio" class="radio_button" /></td>
+              <td>--</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= submit_tag("submit", :id => 'submit_my_account') %>
+    <% end %>
+
+</section>

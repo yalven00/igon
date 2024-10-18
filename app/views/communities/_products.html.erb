@@ -1,0 +1,27 @@
+<li>
+  <figure class="main canvas">
+    <% if !product.images.blank? && image_presence(product.images.first.image_url) %>
+      <%= image_tag product.images.first.image_url %>
+    <% else %>
+      <%= image_tag ("thumbs/jets.jpg")%>
+    <% end %>
+  </figure>
+  <p class="product-name"><%= product.name %></p>
+  <ul>
+    <li>
+      <a class="sprites small-ask" href="#">&nbsp;</a>
+    </li>
+    <li>
+      <figure class="canvas">
+        <% if !product.account_user.images.blank? && image_presence(product.account_user.images.first.image_url) %>
+          <%= image_tag(product.account_user.images.first.image_url) %>
+        <% else %>
+          <%= image_tag ("thumbs/ph7.jpg")%>
+        <% end %>
+      </figure>
+    </li>
+    <li>
+       <p><%= number_with_precision(product.price, :precision => 0) %></p>
+    </li>
+  </ul>
+ </li>

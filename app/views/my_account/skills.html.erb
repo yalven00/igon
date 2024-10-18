@@ -1,0 +1,40 @@
+<div id="main_head"><h1>My Account</h1><%= link_to('Save and Go Home', { :action => "home" }) %></div>
+
+<%= render(:partial => "nav") %>
+
+<section id="main_holder" class="blue_top">
+
+    <section class="clearfix blue_wraparound">
+    <%= image_tag('blue_top_left_wrap.jpg', :class => 'blue_top_left_wrap') %>
+    <%= image_tag('blue_top_right_wrap.jpg', :class => 'blue_top_right_wrap') %>
+        <div class="text_container">
+            <h3 class="head_main">Skills/Offers</h3>
+        </div>
+    </section>
+
+  <%= form_for(@account_user, :url => {:action => 'update'}, :html => {:id => 'contact_form'}) do |f| %>
+
+    <h3><%= image_tag('one.png') %>Goods<span class="note"> (Choose all that apply)</span></h3>
+      <ul class="choosers chosen">
+      </ul>
+      <ul class="choosers original">
+
+        <% Skill.where(:good => 1).each do |skill| %>
+          <li><%= check_box_tag "account_user[skill_ids][]", skill.id, @account_user.skill_ids.include?(skill.id), {:class => 'checkbox', :id => dom_id(skill)} %><%= image_tag('setup_add.png', :class => 'main', :size => "12x12") %><%= skill.name %></li>
+        <% end %>
+
+      </ul>
+      <h3 class="clear two"><%= image_tag('two.png') %>Services<span class="note"> (Choose all that apply)</span></h3>
+      <ul class="choosers chosen">
+      </ul>
+      <ul class="choosers original">
+
+        <% Skill.where(:good => 0).each do |skill| %>
+          <li><%= check_box_tag "account_user[skill_ids][]", skill.id, @account_user.skill_ids.include?(skill.id), {:class => 'checkbox', :id => dom_id(skill)} %><%= image_tag('setup_add.png', :class => 'main', :size => "12x12") %><%= skill.name %></li>
+        <% end %>
+
+      </ul>
+      <%= submit_tag("submit", :id => 'submit_my_account') %>
+    <% end %>
+
+</section>

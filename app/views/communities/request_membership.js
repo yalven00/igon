@@ -1,0 +1,1 @@
+$("#membership").html("<%= escape_javascript(render('membership')) %>");

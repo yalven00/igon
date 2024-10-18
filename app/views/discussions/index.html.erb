@@ -1,0 +1,90 @@
+<%= stylesheet_link_tag 'page-style' %>
+
+<style type="text/css">
+  #expanded-reply{
+    background-color: #E6E7E8;
+    overflow: hidden;
+    /*max-height: 600px;*/
+  }
+
+  #expanded-reply li p{
+  }
+
+  .post-mssg textarea {
+    width: 730px;
+  }
+
+  #modal-body textarea {
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  #modal-body > li > section.header{
+    width: 770px;
+    padding-bottom: 20px;
+  }
+
+  #reply-form textarea{
+    width: 323px;
+    margin-bottom: 10px;
+  }
+
+  #expanded-reply {
+    min-height:0;
+  }
+
+  .nt > .private-container {
+    padding:15px;
+  }
+
+  #reply-form textarea {
+    width:285px;
+  }
+
+  #expanded-reply li p {
+    width:208px;
+  }
+
+  #more-public {
+    min-height: 0;
+    max-height:100%;
+    padding-top: 16px;
+  }
+
+  #more-private {
+    min-height: 0;
+    max-height:100%;
+    padding-top: 16px;
+    padding-left: 15px;
+    padding-right:0;
+  }
+</style>
+
+<div id='discussion-modal' style='padding:20px; background:#fff;'>
+  <ul id="modal-body">
+    <li id='discussion-form'>
+      <%= render 'discussion_form' %>
+    </li>
+    <li class="post-items">
+      <section class="left-content" id="left-content-public">
+        <h6>public <%= raw('<span class="head-no">1</span>') unless @private_discussions.blank? %> </h6>
+        <ul class="public-discussion" id="expanded-public" >
+          <p><%=  render "public" %><p>
+        </ul>
+        <ul id="more-public" class="public-discussion" ></ul>
+        <%= link_to raw('<i class="sprites"></i>View more'), community_discussions_path(:community_id => @community.id, :page => @public_discussions.next_page, :more => 'public'), :remote => true, :id => 'more-public-discussions', :class => "more" if @public_discussions.total_pages > 1 %>
+        <div id="loader-more-public" style='display:none;'><%= image_tag('loading.gif') %></div>
+      </section>
+      <section class="right-content">
+        <h6><% unless @private_discussions.blank? %> private<span class="head-no">2</span><% end %></h6>
+        <section class="private-container">
+          <ul class="private-discussion" id="expanded-private">
+            <%= render 'private' %>
+          </ul>
+          <ul id="more-private" class="public-discussion" ></ul>
+        </section>
+        <%= link_to raw('<i class="sprites"></i>View more'), community_discussions_path(:community_id => @community.id, :page => @private_discussions.next_page, :more => 'private'), :remote => true, :id => 'more-private-discussions', :class => "more" if @private_discussions.total_pages > 1 %>
+        <div id="loader-more-private" style='display:none;'><%= image_tag('loading.gif') %></div>
+      </section>
+    </li>
+  </ul>
+</div>
